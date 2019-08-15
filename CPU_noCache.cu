@@ -19,39 +19,38 @@ void arraySumStride(int *arr, int arraySize, int cacheLineSize, int *sumValue) {
 
 int main()
 {
-	int arraySize = 1 << 22; // 4M integers
+	int arraySize = 1 << 21; // 2M integers
 	int cacheLineSize = 64 / sizeof(int); // # integers per cache line
-	int numCycles = 2000; // # of repetitions
+	int numCycles = 4000; // # of repetitions
 	int *arr;
-	cudaMallocManaged(&arr, arraySize * sizeof(int));
+	cudaMallocManaged(&arr, arraySize * sizeof(int)); // allocate arraySize * 4 bytes
 	printf("Sum array of integers on CPU, not using cache.\nArray size=  %d integers\n", arraySize);
 
 	// initialize array
 	for (int i = 0; i < arraySize; i++) {
 		arr[i] = 1;
 	}
+	int sumValue = 0;
 
 	
 	// Time measurement
-	int sumValue = 0;
 	int elapsedClocks = 0, startClock = 0, endClock = 0;
-	double elapsedTime;
+	double elapsedTime, avgElapsedTime;
 
 	startClock = clock();
 	for (int j = 0; j < numCycles; j++) {
 		arraySumStride(arr, arraySize, cacheLineSize, &sumValue);
 
 	}
-
 	endClock = clock();
 
 	// Print results
 	printf("startClock: %d\n", startClock);
 	printf("endClock: %d\n", endClock);
 	elapsedClocks = endClock - startClock;
-	printf("elapsedClock: %d\n", elapsedClocks);
-	elapsedTime = ((double)(elapsedClocks)) / (CLOCKS_PER_SEC * numCycles);
-	printf("Sum = %d, elapsed time= %f s.\n", sumValue, elapsedTime);
+	elapsedTime = ((double)(elapsedClocks)) / (CLOCKS_PER_SEC);
+	avgElapsedTime = elapsedTime / numCycles;
+	printf("Sum= %d. Number of repetitions= %d.\nElapsed time= %fs. Average elapsed time= %f.\n", sumValue, numCycles, elapsedTime, avgElapsedTime);
 
 	cudaFree(arr);
 	return 0;
