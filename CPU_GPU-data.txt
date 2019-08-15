@@ -1,0 +1,19 @@
+CPU
+Intel i7-6700k
+
+CPU clock: 4.00 GHz
+L3 cache: 8 MB
+Cache line size: 64 Byte
+
+RAM (DDR4) clock: 2667 MHz
+
+------
+
+GPU
+NVIDIA GTX980Ti
+
+GPU clock: 1000 MHz
+Memory clock: 1753 MHz
+L1 Cache: 48 KB (per SMM)
+L2 Cache: 3 MB
+Cache line size: 128 Byte
