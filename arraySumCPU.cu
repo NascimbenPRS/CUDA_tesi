@@ -34,17 +34,41 @@ void arraySumStride(int *arr, int arraySize, int *sumValue, int numCycles, int c
 
 // allocate memory, using either malloc or cudaMallocManaged
 void genericMalloc(void *ptr, int size, char *alloc_mode) {
+	if (strcmp(alloc_mode, "GPU") == 0) {
+		cudaMallocManaged(&ptr, size);
+		cudaDeviceSynchronize();
+		printf("allocate on gpu\n");
+	}
+	else {
+		if (strcmp(alloc_mode, "CPU") == 0) {
+			ptr = malloc(size);
+		}
+	}
+}
 
+// free memory, using either free or cudaFree
+void genericFree(void *ptr, char *alloc_mode){
+	if (strcmp(alloc_mode, "GPU") == 0) {
+		cudaFree(ptr);
+		cudaDeviceSynchronize();
+	}
+	else {
+		if (strcmp(alloc_mode, "CPU") == 0) {
+			free(ptr);
+		}
+	}
 }
 
 int main(int argc, char *argv[])
 {
-	int arraySize = 1 << 22; // 4M integers
+	int arraySize = 1 << 23; // 8M integers
 	int usesCache = 1; // 0: don't use cache, 1: use cache (default)
 	int cacheLineSize = 64 / sizeof(int); // # integers per cache line
-	int numCycles = 2000; // # of repetitions
+	int numCycles = 1000; // # of repetitions
 	int *arr;
-	cudaMallocManaged(&arr, arraySize * sizeof(int)); // allocate arraySize * 4 bytes
+	arr = (int*) malloc(arraySize * sizeof(int));
+	//cudaMallocManaged(&arr, arraySize * sizeof(int)); // allocate arraySize * 4 bytes
+	//genericMalloc(arr, arraySize * sizeof(int), "CPU");
 	printf("Sum array of integers on CPU. Array size=  %d integers\n", arraySize);
 
 
@@ -92,9 +116,10 @@ int main(int argc, char *argv[])
 	printf("elapsedClock: %d\n", elapsedClocks);
 	elapsedTime = ((double)(elapsedClocks)) / (CLOCKS_PER_SEC);
 	avgElapsedTime = elapsedTime / numCycles;
-	printf("Sum= %d. Number of repetitions= %d.\nElapsed time= %fs. Average elapsed time= %fs.\n", sumValue, numCycles, elapsedTime, avgElapsedTime);
+	printf("Sum= %d. Number of repetitions= %d.\nElapsed time= %fs. Average elapsed time= %fs.\n\n", sumValue, numCycles, elapsedTime, avgElapsedTime);
 
-	cudaFree(arr);
+	free(arr);
+	//genericFree(arr, "CPU");
 
 	return 0;
 }

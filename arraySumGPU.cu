@@ -41,16 +41,48 @@ __global__ void initializeArray(int *arr, int arraySize) {
 	printf("Array initialized\n");
 }
 
+// allocate memory, using either malloc or cudaMallocManaged
+void genericMalloc(void *ptr, int size, char *alloc_mode) {
+	if (strcmp(alloc_mode, "GPU") == 0) {
+		cudaMallocManaged(&ptr, size);
+		cudaDeviceSynchronize();
+		printf("allocate on gpu\n");
+	}
+	else {
+		if (strcmp(alloc_mode, "CPU") == 0) {
+			ptr = malloc(size);
+		}
+	}
+}
+
+// free memory, using either free or cudaFree
+void genericFree(void *ptr, char *alloc_mode) {
+	if (strcmp(alloc_mode, "GPU") == 0) {
+		cudaFree(ptr);
+		cudaDeviceSynchronize();
+	}
+	else {
+		if (strcmp(alloc_mode, "CPU") == 0) {
+			free(ptr);
+		}
+	}
+}
+
 int main(int argc, char *argv[])
 {
-	int arraySize = 1 << 22; // 4M integers
+	int arraySize = 1 << 23; // 8M integers
 	int usesCache = 1; // 0: don't use cache, 1: use cache (default)
 	int cacheLineSize = 128 / sizeof(int); // # integers per cache line
-	int numCycles = 5; // # of repetitions
+	int numCycles = 40; // # of repetitions
 	int *arr, *sumValue;
 
 	cudaMallocManaged(&arr, arraySize * sizeof(int)); // allocate arraySize * 4 bytes
 	cudaMallocManaged(&sumValue, sizeof(int));
+	/*
+	genericMalloc(arr, arraySize * sizeof(int), "GPU");
+	genericMalloc(sumValue, sizeof(int), "GPU");
+	*/
+
 	printf("Sum array of integers on GPU (single thread). Array size=  %d integers\n", arraySize);
 
 
@@ -109,11 +141,17 @@ int main(int argc, char *argv[])
 	printf("elapsedClock: %d\n", elapsedClocks);
 	elapsedTime = ((double)(elapsedClocks)) / (CLOCKS_PER_SEC);
 	avgElapsedTime = elapsedTime / numCycles;
-	printf("Sum= %d. Number of repetitions= %d.\nElapsed time= %fs. Average elapsed time= %fs.\n", *sumValue, numCycles, elapsedTime, avgElapsedTime);
+	printf("Sum= %d. Number of repetitions= %d.\nElapsed time= %fs. Average elapsed time= %fs.\n1n", *sumValue, numCycles, elapsedTime, avgElapsedTime);
 
-
+	
 	cudaFree(arr);
 	cudaFree(sumValue);
+	
+
+	/*
+	genericFree(arr, "GPU");
+	genericFree(sumValue, "GPU");
+	*/
 	cudaDeviceReset();
 	return 0;
 }

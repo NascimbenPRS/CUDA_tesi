@@ -1,0 +1,7 @@
+Somma array di interi, dimensioni array = 8M elementi.
+
+Tempo esecuzione:
+- CPU, con cache: tempo totale= 23.528013s , tempo medio= 0.023528s (1000 rip)
+- CPU, senza cache: tempo totale= 94.105838s , tempo medio= 0.094106s (1000 rip)
+- GPU, con cache: tempo totale= 26.808555s , tempo medio= 0.670214s (40 rip)
+- GPU, senza cache: tempo totale= 143.890335s , tempo medio= 3.597258s (40 rip)
