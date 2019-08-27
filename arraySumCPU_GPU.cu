@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "commonFunctions.h" // generic malloc
 #include "anyoption.h" // options parsing
 
 /*
@@ -66,38 +67,17 @@ __global__ void arraySumStrideGPU(int *arr, int arraySize, int *sumValue, int nu
 	*sumValue = tempSum;
 }
 
-// allocate memory using "malloc" if on CPU, "cudaMallocManaged" if on GPU
-void genericMalloc(void **ptr, int size, int onCPU) {
-	if (onCPU) {
-		*ptr = malloc(size);
-	}
-	else {
-		cudaMallocManaged(ptr, size);
-	}
-}
-
-// free memory, using either free or cudaFree
-void genericFree(void *ptr, int onCPU) {
-	if (onCPU) {
-		free(ptr);
-	}
-	else {
-		cudaFree(ptr);
-	}
-}
-
 
 int main(int argc, char *argv[])
 {
 	int arraySize = 1 << 23; // 8M integers
 	int usesCache = 1; // 0: don't use cache, 1: use cache (default)
-	int onCPU = 1; // 0: sum on GPU, 1: sum on CPU (default)
 	int cacheLineSize = 64 / sizeof(int); // # integers per cache line on CPU
 	int cacheLineSizeGPU = 128 / sizeof(int); // # integers per cache line on GPU
 	int numCycles = 1000; // default # of repetitions on CPU
 	int numCyclesGPU = 30; // default # of repetitions on GPU
 	int *arr, *sumValue;
-	printf("Default options: sum on CPU, use cache, arraySize= %d integers.\n", arraySize);
+	printf("Default options: use cache, arraySize= %d integers.\n", arraySize);
 	printf("-- Default number of repetitions: %d (CPU), %d (GPU).\n", numCycles, numCyclesGPU);
 
 
@@ -106,7 +86,6 @@ int main(int argc, char *argv[])
 	// set usage
 	opt->addUsage("Options usage: ");
 	opt->addUsage("");
-	opt->addUsage(" --GPU \tSum on GPU ");
 	opt->addUsage(" --no_cache \tDon't use cache ");
 	opt->addUsage(" --rep <rep>\tNumber of repetitions ");
 	opt->addUsage(" --size <size>\tArray size (* 2^20) elements");
@@ -114,7 +93,6 @@ int main(int argc, char *argv[])
 	opt->printUsage();
 
 	// set options
-	opt->setFlag("GPU");
 	opt->setFlag("no_cache");
 	opt->setOption("rep");
 	opt->setOption("size");
@@ -123,13 +101,6 @@ int main(int argc, char *argv[])
 	opt->processCommandArgs(argc, argv);
 
 	// Get option values
-	if (opt->getFlag("GPU")) {
-		onCPU = 0;
-		printf("Sum array of integers on GPU (single thread)\n");
-	}
-	else {
-		printf("Sum array of integers on CPU\n");
-	}
 
 	if (opt->getFlag("no_cache")) {
 		usesCache = 0;
@@ -164,7 +135,8 @@ int main(int argc, char *argv[])
 	double elapsedTime, avgElapsedTime;
 
 	
-	if (onCPU) {
+	#ifndef __NVCC__
+		printf("Not compiled with NVCC, run on CPU\n");
 		startClock = clock();
 		if (usesCache) {
 			arraySum(arr, arraySize, sumValue, numCycles);
@@ -172,8 +144,9 @@ int main(int argc, char *argv[])
 		else {
 			arraySumStride(arr, arraySize, sumValue, numCycles, cacheLineSize);
 		}
-	}
-	else {
+	#endif
+	#ifdef __NVCC__
+		printf("Compiled with NVCC, run on GPU\n");
 		// Prefetch data to GPU
 		int device = -1;
 		cudaGetDevice(&device);
@@ -190,7 +163,7 @@ int main(int argc, char *argv[])
 			arraySumStrideGPU << <1, 1 >> > (arr, arraySize, sumValue, numCyclesGPU, cacheLineSizeGPU);
 		}
 		cudaDeviceSynchronize();
-	}
+	#endif
 	endClock = clock();
 
 
@@ -199,12 +172,12 @@ int main(int argc, char *argv[])
 	elapsedClocks = endClock - startClock;
 	printf("elapsedClock: %d\n", elapsedClocks);
 	elapsedTime = ((double)(elapsedClocks)) / (CLOCKS_PER_SEC);
-	if (onCPU) {
+	#ifndef __NVCC__
 		avgElapsedTime = elapsedTime / numCycles;
-	}
-	else {
+	#endif
+	#ifdef __NVCC__
 		avgElapsedTime = elapsedTime / numCyclesGPU;
-	}
+	#endif
 	printf("Sum= %d. \nElapsed time= %fs. Average execution time= %fs.\n\n", *sumValue, elapsedTime, avgElapsedTime);
 
 
