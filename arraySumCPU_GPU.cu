@@ -10,7 +10,7 @@
 
 /*
 How to compile:
-	nvcc "filename" anyoption.cpp
+	nvcc/gcc/... "filename" anyoption.cpp
 */
 
 
@@ -47,8 +47,8 @@ __global__ void arraySumGPU(int *arr, int arraySize, int *sumValue, int numCycle
 		tempSum = 0;
 		for (int i = 0; i < arraySize; i++) {
 			tempSum += arr[i];
+		}
 	}
-}
 	*sumValue = tempSum;
 	//printf("Sum value (thread): %d\n", *sumValue);
 }
@@ -120,8 +120,8 @@ int main(int argc, char *argv[])
 	// options parsed
 
 	// allocate memory
-	genericMalloc((void**)&arr, arraySize * sizeof(int), onCPU);
-	genericMalloc((void**)&sumValue, arraySize * sizeof(int), onCPU);
+	genericMalloc((void**)&arr, arraySize * sizeof(int));
+	genericMalloc((void**)&sumValue, arraySize * sizeof(int));
 
 	// initialize array on CPU
 	for (int i = 0; i < arraySize; i++) {
@@ -134,36 +134,36 @@ int main(int argc, char *argv[])
 	int elapsedClocks = 0, startClock = 0, endClock = 0;
 	double elapsedTime, avgElapsedTime;
 
-	
-	#ifndef __NVCC__
-		printf("Not compiled with NVCC, run on CPU\n");
-		startClock = clock();
-		if (usesCache) {
-			arraySum(arr, arraySize, sumValue, numCycles);
-		}
-		else {
-			arraySumStride(arr, arraySize, sumValue, numCycles, cacheLineSize);
-		}
-	#endif
-	#ifdef __NVCC__
-		printf("Compiled with NVCC, run on GPU\n");
-		// Prefetch data to GPU
-		int device = -1;
-		cudaGetDevice(&device);
-		cudaDeviceSynchronize();
-		cudaMemPrefetchAsync(arr, arraySize * sizeof(int), device, NULL);
-		cudaMemPrefetchAsync(sumValue, sizeof(int), device, NULL);
-		cudaDeviceSynchronize();
 
-		startClock = clock();
-		if (usesCache) {
-			arraySumGPU << <1, 1 >> > (arr, arraySize, sumValue, numCyclesGPU);
-		}
-		else {
-			arraySumStrideGPU << <1, 1 >> > (arr, arraySize, sumValue, numCyclesGPU, cacheLineSizeGPU);
-		}
-		cudaDeviceSynchronize();
-	#endif
+#ifndef __NVCC__
+	printf("Not compiled with NVCC, run on CPU\n");
+	startClock = clock();
+	if (usesCache) {
+		arraySum(arr, arraySize, sumValue, numCycles);
+	}
+	else {
+		arraySumStride(arr, arraySize, sumValue, numCycles, cacheLineSize);
+	}
+#endif
+#ifdef __NVCC__
+	printf("Compiled with NVCC, run on GPU\n");
+	// Prefetch data to GPU
+	int device = -1;
+	cudaGetDevice(&device);
+	cudaDeviceSynchronize();
+	cudaMemPrefetchAsync(arr, arraySize * sizeof(int), device, NULL);
+	cudaMemPrefetchAsync(sumValue, sizeof(int), device, NULL);
+	cudaDeviceSynchronize();
+
+	startClock = clock();
+	if (usesCache) {
+		arraySumGPU << <1, 1 >> > (arr, arraySize, sumValue, numCyclesGPU);
+	}
+	else {
+		arraySumStrideGPU << <1, 1 >> > (arr, arraySize, sumValue, numCyclesGPU, cacheLineSizeGPU);
+	}
+	cudaDeviceSynchronize();
+#endif
 	endClock = clock();
 
 
@@ -172,18 +172,18 @@ int main(int argc, char *argv[])
 	elapsedClocks = endClock - startClock;
 	printf("elapsedClock: %d\n", elapsedClocks);
 	elapsedTime = ((double)(elapsedClocks)) / (CLOCKS_PER_SEC);
-	#ifndef __NVCC__
-		avgElapsedTime = elapsedTime / numCycles;
-	#endif
-	#ifdef __NVCC__
-		avgElapsedTime = elapsedTime / numCyclesGPU;
-	#endif
+#ifndef __NVCC__
+	avgElapsedTime = elapsedTime / numCycles;
+#endif
+#ifdef __NVCC__
+	avgElapsedTime = elapsedTime / numCyclesGPU;
+#endif
 	printf("Sum= %d. \nElapsed time= %fs. Average execution time= %fs.\n\n", *sumValue, elapsedTime, avgElapsedTime);
 
 
 	// free allocated memory
-	genericFree(arr, onCPU);
-	genericFree(sumValue, onCPU);
+	genericFree(arr);
+	genericFree(sumValue);
 
 	return 0;
 }

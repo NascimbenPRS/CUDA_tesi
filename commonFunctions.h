@@ -1,5 +1,5 @@
 // allocate memory using "cudaMallocManaged" if compiled with NVCC, "malloc" else
-void genericMalloc(void **ptr, int size, int onCPU) {
+void genericMalloc(void **ptr, int size) {
 	// compiler= nvcc
 #ifdef __NVCC__
 	cudaMallocManaged(ptr, size);
@@ -12,7 +12,7 @@ void genericMalloc(void **ptr, int size, int onCPU) {
 }
 
 // free memory, using "cudaFree" if compiled with NVCC, "free" else
-void genericFree(void *ptr, int onCPU) {
+void genericFree(void *ptr) {
     // compiler= nvcc
 #ifdef __NVCC__
 	cudaFree(ptr);
