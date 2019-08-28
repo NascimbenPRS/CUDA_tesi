@@ -1,16 +1,22 @@
-#include "cuda_runtime.h"
-//#include "device_launch_parameters.h"
+#ifdef __NVCC__
+	#include "cuda_runtime.h"
+	
+	//#include "device_launch_parameters.h"
+#endif
 
-#include <iostream>
+
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
+#include <iostream>
 
 #include "commonFunctions.h" // generic malloc
-#include "anyoption.h" // options parsing
+#include "sumOptions.h" // options handling
+
 
 /*
 How to compile:
-	nvcc/gcc/... "filename" anyoption.cpp
+	nvcc/g++ "filename" anyoption.cpp
 */
 
 
@@ -40,6 +46,8 @@ void arraySumStride(int *arr, int arraySize, int *sumValue, int numCycles, int c
 	*sumValue = tempSum;
 }
 
+// GPU kernels
+#ifdef __NVCC__ 
 // sum array of integers sequentially (using cache) on GPU
 __global__ void arraySumGPU(int *arr, int arraySize, int *sumValue, int numCycles) {
 	int tempSum = 0;
@@ -66,6 +74,7 @@ __global__ void arraySumStrideGPU(int *arr, int arraySize, int *sumValue, int nu
 	}
 	*sumValue = tempSum;
 }
+#endif
 
 
 int main(int argc, char *argv[])
@@ -80,44 +89,8 @@ int main(int argc, char *argv[])
 	printf("Default options: use cache, arraySize= %d integers.\n", arraySize);
 	printf("-- Default number of repetitions: %d (CPU), %d (GPU).\n", numCycles, numCyclesGPU);
 
+	readOptions(argc, argv, &usesCache, &numCycles, &numCyclesGPU, &arraySize); // read options from command line and update values accordingly
 
-	// parse options
-	AnyOption *opt = new AnyOption();
-	// set usage
-	opt->addUsage("Options usage: ");
-	opt->addUsage("");
-	opt->addUsage(" --no_cache \tDon't use cache ");
-	opt->addUsage(" --rep <rep>\tNumber of repetitions ");
-	opt->addUsage(" --size <size>\tArray size (* 2^20) elements");
-	opt->addUsage("");
-	opt->printUsage();
-
-	// set options
-	opt->setFlag("no_cache");
-	opt->setOption("rep");
-	opt->setOption("size");
-
-	// Process commandline and get the options
-	opt->processCommandArgs(argc, argv);
-
-	// Get option values
-
-	if (opt->getFlag("no_cache")) {
-		usesCache = 0;
-		printf("no_cache flag set\n");
-	}
-	if (opt->getValue("rep") != NULL) {
-		numCycles = atoi(opt->getValue("rep"));
-		numCyclesGPU = numCycles;
-		printf("Number of repetitions set to: %d\n", numCycles);
-	}
-	if (opt->getValue("size") != NULL) {
-		arraySize = (1 << 20) * atoi(opt->getValue("size"));
-		printf("Array size set to: %dM integers\n", arraySize);
-	}
-
-	delete opt;
-	// options parsed
 
 	// allocate memory
 	genericMalloc((void**)&arr, arraySize * sizeof(int));
