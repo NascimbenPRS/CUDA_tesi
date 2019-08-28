@@ -89,7 +89,8 @@ int main(int argc, char *argv[])
 	printf("Default options: use cache, arraySize= %d integers.\n", arraySize);
 	printf("-- Default number of repetitions: %d (CPU), %d (GPU).\n", numCycles, numCyclesGPU);
 
-	readOptions(argc, argv, &usesCache, &numCycles, &numCyclesGPU, &arraySize); // read options from command line and update values accordingly
+	// read options from command line and update values accordingly
+	readOptions(argc, argv, &usesCache, &numCycles, &numCyclesGPU, &arraySize); 
 
 
 	// allocate memory
