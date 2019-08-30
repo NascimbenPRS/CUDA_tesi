@@ -1,0 +1,58 @@
+
+ Compare execution time on CPU and GPU
+Default options: use cache, arraySize= 1048576 integers.
+-- max number of threads= 1024.
+
+Options usage: 
+
+ --no_cache 	Don't use cache 
+ --rep <rep>	Number of repetitions 
+ --size <size>	Array size (* 2^20) elements
+
+
+NUM THREADS= 1
+CPU: Elapsed time= 4.779587s. Average execution time= 0.002334s.
+GPU: Elapsed time= 5.751896s. Average execution time= 0.089873s.
+
+NUM THREADS= 2
+CPU: Elapsed time= 4.775946s. Average execution time= 0.004664s.
+GPU: Elapsed time= 6.382300s. Average execution time= 0.099723s.
+
+NUM THREADS= 4
+CPU: Elapsed time= 4.775624s. Average execution time= 0.009327s.
+GPU: Elapsed time= 7.108030s. Average execution time= 0.111063s.
+
+NUM THREADS= 8
+CPU: Elapsed time= 4.777886s. Average execution time= 0.018664s.
+GPU: Elapsed time= 4.561937s. Average execution time= 0.142561s.
+
+NUM THREADS= 16
+CPU: Elapsed time= 4.779853s. Average execution time= 0.037343s.
+GPU: Elapsed time= 6.882090s. Average execution time= 0.215065s.
+
+NUM THREADS= 32
+CPU: Elapsed time= 4.775135s. Average execution time= 0.074611s.
+GPU: Elapsed time= 6.886872s. Average execution time= 0.430430s.
+
+NUM THREADS= 64
+CPU: Elapsed time= 4.776875s. Average execution time= 0.149277s.
+GPU: Elapsed time= 6.833844s. Average execution time= 0.427115s.
+
+NUM THREADS= 128
+CPU: Elapsed time= 4.777977s. Average execution time= 0.298624s.
+GPU: Elapsed time= 4.239724s. Average execution time= 0.529965s.
+
+NUM THREADS= 256
+CPU: Elapsed time= 4.777500s. Average execution time= 0.597187s.
+GPU: Elapsed time= 4.784608s. Average execution time= 1.196152s.
+
+NUM THREADS= 512
+CPU: Elapsed time= 4.775765s. Average execution time= 1.193941s.
+GPU: Elapsed time= 6.212823s. Average execution time= 3.106412s.
+
+NUM THREADS= 1024
+CPU: Elapsed time= 4.781436s. Average execution time= 2.390718s.
+GPU: Elapsed time= 13.274923s. Average execution time= 6.637461s.
+
+CPU is still faster.
+
