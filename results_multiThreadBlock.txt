@@ -1,0 +1,92 @@
+
+Compare execution time on CPU and GPU
+Default options: use cache, arraySize= 1048576 integers.
+-- number of multiprocessors= 15
+-- run comparisons until GPU is faster than CPU or until all numBlocks-numThreads configurations with max 1024 threads have failed
+
+Options usage: 
+
+ --no_cache 	Don't use cache 
+ --rep <rep>	Number of repetitions 
+ --size <size>	Array size (* 2^20) elements
+
+
+NUM BLOCKS= 1, NUM THREADS PER BLOCK = 1
+CPU: Elapsed time= 6.520069s. Average execution time= 0.003184s.
+GPU: Elapsed time= 5.729919s. Average execution time= 0.089530s.
+
+NUM BLOCKS= 1, NUM THREADS PER BLOCK = 2
+CPU: Elapsed time= 5.703332s. Average execution time= 0.005570s.
+GPU: Elapsed time= 6.352323s. Average execution time= 0.099255s.
+
+NUM BLOCKS= 1, NUM THREADS PER BLOCK = 4
+CPU: Elapsed time= 6.230299s. Average execution time= 0.012169s.
+GPU: Elapsed time= 7.096305s. Average execution time= 0.110880s.
+
+NUM BLOCKS= 1, NUM THREADS PER BLOCK = 8
+CPU: Elapsed time= 6.230161s. Average execution time= 0.024337s.
+GPU: Elapsed time= 9.107388s. Average execution time= 0.142303s.
+
+NUM BLOCKS= 1, NUM THREADS PER BLOCK = 16
+CPU: Elapsed time= 6.162882s. Average execution time= 0.048148s.
+GPU: Elapsed time= 6.870535s. Average execution time= 0.214704s.
+
+NUM BLOCKS= 1, NUM THREADS PER BLOCK = 32
+CPU: Elapsed time= 6.201996s. Average execution time= 0.096906s.
+GPU: Elapsed time= 6.884643s. Average execution time= 0.430290s.
+
+NUM BLOCKS= 1, NUM THREADS PER BLOCK = 64
+CPU: Elapsed time= 6.180297s. Average execution time= 0.193134s.
+GPU: Elapsed time= 6.816043s. Average execution time= 0.426003s.
+
+NUM BLOCKS= 1, NUM THREADS PER BLOCK = 128
+CPU: Elapsed time= 6.093714s. Average execution time= 0.380857s.
+GPU: Elapsed time= 8.458639s. Average execution time= 0.528665s.
+
+NUM BLOCKS= 1, NUM THREADS PER BLOCK = 256
+CPU: Elapsed time= 6.129586s. Average execution time= 0.766198s.
+GPU: Elapsed time= 9.570324s. Average execution time= 1.196290s.
+
+NUM BLOCKS= 1, NUM THREADS PER BLOCK = 512
+CPU: Elapsed time= 6.045292s. Average execution time= 1.511323s.
+GPU: Elapsed time= 6.214959s. Average execution time= 3.107480s.
+
+NUM BLOCKS= 1, NUM THREADS PER BLOCK = 1024
+CPU: Elapsed time= 6.056561s. Average execution time= 3.028281s.
+GPU: Elapsed time= 13.258952s. Average execution time= 6.629476s.
+
+NUM BLOCKS= 2, NUM THREADS PER BLOCK = 1
+CPU: Elapsed time= 6.041251s. Average execution time= 0.005900s.
+GPU: Elapsed time= 5.756532s. Average execution time= 0.089946s.
+
+NUM BLOCKS= 2, NUM THREADS PER BLOCK = 2
+CPU: Elapsed time= 6.085703s. Average execution time= 0.011886s.
+GPU: Elapsed time= 6.431499s. Average execution time= 0.100492s.
+
+NUM BLOCKS= 2, NUM THREADS PER BLOCK = 4
+CPU: Elapsed time= 6.056316s. Average execution time= 0.023657s.
+GPU: Elapsed time= 7.171215s. Average execution time= 0.112050s.
+
+NUM BLOCKS= 2, NUM THREADS PER BLOCK = 8
+CPU: Elapsed time= 6.078978s. Average execution time= 0.047492s.
+GPU: Elapsed time= 9.204412s. Average execution time= 0.143819s.
+
+NUM BLOCKS= 2, NUM THREADS PER BLOCK = 16
+CPU: Elapsed time= 6.112220s. Average execution time= 0.095503s.
+GPU: Elapsed time= 6.927614s. Average execution time= 0.216488s.
+
+NUM BLOCKS= 2, NUM THREADS PER BLOCK = 32
+CPU: Elapsed time= 6.083658s. Average execution time= 0.190114s.
+GPU: Elapsed time= 6.968498s. Average execution time= 0.435531s.
+
+NUM BLOCKS= 2, NUM THREADS PER BLOCK = 64
+CPU: Elapsed time= 5.985799s. Average execution time= 0.374112s.
+GPU: Elapsed time= 6.923191s. Average execution time= 0.432699s.
+
+NUM BLOCKS= 2, NUM THREADS PER BLOCK = 128
+CPU: Elapsed time= 6.163544s. Average execution time= 0.770443s.
+GPU: Elapsed time= 8.623801s. Average execution time= 0.538988s.
+
+GPU surpassed CPU when running 2 blocks, 128 threads
+. CPU time: 0.770443, GPU time: 0.538988.
+

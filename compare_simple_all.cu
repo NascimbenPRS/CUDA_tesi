@@ -79,6 +79,44 @@ __global__ void initializeArraysGPU(int **arrGPU, int arraySize) {
 }
 
 
+// struct to keep track of performances
+struct performance
+{
+	int numThreads= 0;
+	int numBlocks= 0;
+	int numThreadsTotal= 0;
+	double timeCPU= 0.f;
+	double timeGPU= 0.f;
+	double speedup= 0.f;
+};
+
+
+void printBestPerformances(struct performance *bestPerf, int numSavedPerformances) {
+	printf("\nBest %d performances:\n", numSavedPerformances);
+	for (int i = 0; i < numSavedPerformances; i++) {
+		printf("%d) %d blocks, %d threads per block, %d threads running\n", i+1, bestPerf[i].numBlocks, bestPerf[i].numThreads, bestPerf[i].numThreadsTotal);
+		printf("-- CPU time: %f, GPU time: %f, speedup= %f\n", bestPerf[i].timeCPU, bestPerf[i].timeGPU, bestPerf[i].speedup);
+	}
+}
+
+void updateBestPerformances(struct performance *bestPerf, int numSavedPerformances, struct performance perf) {
+	int i = 0;
+	while (i < numSavedPerformances) {
+		if (perf.speedup > bestPerf[i].speedup) {
+			// shift performances
+			for (int k = numSavedPerformances - 1; k > i; k--) {
+				bestPerf[k] = bestPerf[k - 1];
+			}
+			bestPerf[i] = perf;
+			i = numSavedPerformances; // force exit
+		}
+	}
+}
+
+
+
+
+
 
 int main(int argc, char *argv[])
 {
@@ -93,7 +131,15 @@ int main(int argc, char *argv[])
 	int numBlocks = 1; // # of blocks
 	int numThreadsTotal; // # of threads running concurrently (= numThreads * numBlocks)
 	int maxNumThreads = 1024;
-	int maxNumBlocks= 1024;
+	int maxNumBlocks = 1024;
+	
+	// create an array to save performances
+	int numSavedPerformances = 200; // # best performances to record
+	struct performance *bestPerformances;
+	genericMalloc((void**)&bestPerformances, numSavedPerformances * sizeof(struct performance));
+
+
+
 
 	cudaDeviceProp prop;
 	int device = -1;
@@ -103,16 +149,16 @@ int main(int argc, char *argv[])
 	int numSM = prop.multiProcessorCount;
 
 	printf("\nCompare execution time on CPU and GPU\n");
-	
 	printf("Default options: use cache, arraySize= %d integers.\n", arraySize);
 	//printf("-- Default number of repetitions: %d (CPU), %d (GPU).\n", numCycles, numCyclesGPU);
-	printf("-- number of multiprocessors= %d\n", numSM);
-	printf("-- run comparisons until GPU is faster than CPU or until all numBlocks-numThreads configurations with max %d threads have failed\n", maxNumThreads);
-	
+	printf("-- number of multiprocessors on GPU= %d\n", numSM);
+	printf("-- max number of blocks= %d.\n", maxNumBlocks);
+	printf("-- max number of threads= %d.\n", maxNumThreads);
+
 
 	readOptions(argc, argv, &usesCache, &numCycles, &numCyclesGPU, &arraySize); // read options from command line and update values accordingly
 	// don't use --rep
-	
+
 
 	// allocate memory for CPU execution
 	genericMalloc((void**)&arrCPU, arraySize * sizeof(int));
@@ -129,16 +175,13 @@ int main(int argc, char *argv[])
 	int minRunTime = 5; // elapsedTime must be at least minRunTime seconds
 	int minNumCyclesCPU = 1, minNumCyclesGPU = 1;
 	int elapsedClocks = 0, startClock = 0, endClock = 0;
-	double elapsedTimeCPU= 0.f, avgElapsedTimeCPU= 0.f, elapsedTimeGPU= 0.f, avgElapsedTimeGPU= 0.f;
+	double elapsedTimeCPU = 0.f, avgElapsedTimeCPU = 0.f, elapsedTimeGPU = 0.f, avgElapsedTimeGPU = 0.f;
+	double speedup = 0.f; // CPU time/GPU time
 
-	avgElapsedTimeGPU = avgElapsedTimeCPU + 1; // run at least once
 
-	// run comparisons until GPU is faster than CPU or until all valid numBlocks-numThreads configurations have failed
-	// start with 1 block and 1 thread, then double numThreads. If maxNumThreads is reached, double numBlocks and restart.
-	while ((avgElapsedTimeCPU < avgElapsedTimeGPU) && (numBlocks <= maxNumThreads)) {
-		
-		numThreadsTotal = numBlocks * numThreads; 
-		printf("NUM BLOCKS= %d, NUM THREADS PER BLOCK = %d\n", numBlocks, numThreads);
+	while (numBlocks <= maxNumBlocks) {
+		numThreadsTotal = numBlocks * numThreads;
+		printf("NUM BLOCKS= %d, NUM THREADS PER BLOCK = %d, TOTAL NUM THREADS= %d\n", numBlocks, numThreads, numThreadsTotal);
 		// Measure CPU execution time
 		elapsedTimeCPU = 0.f;
 		avgElapsedTimeCPU = 0.f;
@@ -158,7 +201,7 @@ int main(int argc, char *argv[])
 			elapsedTimeCPU = ((double)(elapsedClocks)) / (CLOCKS_PER_SEC);
 		}
 		avgElapsedTimeCPU = elapsedTimeCPU / numCycles; // = avg time * numThreadsTotal
-		printf("CPU: Elapsed time= %fs. Average execution time= %fs.\n", elapsedTimeCPU, avgElapsedTimeCPU);
+		printf("--CPU: Elapsed time= %fs. Average execution time= %fs.\n", elapsedTimeCPU, avgElapsedTimeCPU);
 
 
 		// Measure GPU execution time
@@ -166,11 +209,11 @@ int main(int argc, char *argv[])
 		// allocate memory for GPU execution
 		genericMalloc((void**)&arrGPU, numThreadsTotal * sizeof(int*));
 		genericMalloc((void**)&sumValuesGPU, numThreadsTotal * sizeof(int));
-			// allocate for each array copy
+		// allocate for each array copy
 		for (int i = 0; i < numThreadsTotal; i++) {
 			genericMalloc((void**)&arrGPU[i], arraySize * sizeof(int));
 		}
-			// initialize arrays on GPU
+		// initialize arrays on GPU
 		initializeArraysGPU << <1, numThreadsTotal >> > (arrGPU, arraySize);
 		cudaDeviceSynchronize();
 
@@ -191,47 +234,47 @@ int main(int argc, char *argv[])
 
 			elapsedClocks = endClock - startClock;
 			elapsedTimeGPU = ((double)(elapsedClocks)) / (CLOCKS_PER_SEC);
-			
+
 			//printf("----elapsedGPUTIME: %f\n", elapsedTimeGPU);
 		}
 
 		avgElapsedTimeGPU = elapsedTimeGPU / numCyclesGPU;
-		printf("GPU: Elapsed time= %fs. Average execution time= %fs.\n\n", elapsedTimeGPU, avgElapsedTimeGPU);
-		
+		speedup = avgElapsedTimeCPU / avgElapsedTimeGPU;
+		printf("--GPU: Elapsed time= %fs. Average execution time= %fs.\n", elapsedTimeGPU, avgElapsedTimeGPU);
+		printf("--speedup : %f\n\n", speedup);
+
+		// update record of best performances
+		struct performance current_perf = { numThreads, numBlocks, numThreadsTotal, elapsedTimeCPU, elapsedTimeGPU, speedup };
+		updateBestPerformances(bestPerformances, numSavedPerformances, current_perf);
+
 		// Free GPU memory
 		genericFree(sumValuesGPU);
 		for (int i = 0; i < numThreadsTotal; i++) {
 			genericFree(arrGPU[i]);
 		}
 		genericFree(arrGPU);
-
-		if (avgElapsedTimeCPU < avgElapsedTimeGPU) {	
-			if (numThreadsTotal == maxNumThreads) {
-				// double numBlocks and reset numThreads
-				numBlocks *= 2;
-				numThreads = 1;
-			}
-			else {
-				// double numThreads
-				numThreads *= 2;
-			}
+		
+		if (numThreadsTotal == maxNumThreads) {
+			// double numBlocks and reset numThreads
+			numBlocks *= 2;
+			numThreads = 1;
+		}
+		else {
+			numThreads *= 2;
 		}
 
 	}
 
 
-	// print comparison results
-	if (avgElapsedTimeCPU >= avgElapsedTimeGPU) {
-		printf("GPU surpassed CPU when running %d blocks, %d threads\n. CPU time: %f, GPU time: %f.\n\n", numBlocks, numThreads, avgElapsedTimeCPU, avgElapsedTimeGPU);
-	}
-	else {
-		printf("CPU is still faster.\n\n");
-	}
-
+	// Print best results
+	printBestPerformances(bestPerformances, numSavedPerformances);
+	genericFree(bestPerformances);
 
 	// free allocated memory for CPU
 	genericFree(arrCPU);
 	genericFree(sumValueCPU);
+
+	
 
 	return 0;
 }
