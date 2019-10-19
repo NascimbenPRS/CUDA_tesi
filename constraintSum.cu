@@ -52,7 +52,7 @@ int randomIntRange(int min, int max) {
 	return min + rand() / (RAND_MAX / (max - min + 1) + 1);
 }
 
-// fill a constraint with all-different random integers between 0 and arraySize-1
+// Fill a constraint with all-different random integers between 0 and arraySize-1
 void fillConstraintRandom(int *constraint, int constraintSize, int arraySize) {
 	int temp;
 	int k = 0;
@@ -80,7 +80,14 @@ void fillConstraintRandom(int *constraint, int constraintSize, int arraySize) {
 	}
 }
 
-// get the optimal <<<numOfBlocks, blockSize>>> configuration, given the number of jobs and of multiprocessors available on GPU
+// Fill a constraint with the integer sequence [first, first + constraintsSize - 1] mod arraySize;
+void fillConstraint(int *constraint, int constraintSize, int arraySize, int first) {
+	for (int i = 0; i < constraintSize; i++) {
+		constraint[i] = (first + i) % arraySize;
+	}
+}
+
+// get the optimal <<<numOfBlocks, blockSize>>> configuration, given the number of jobs and multiprocessors available on GPU
 void getOptimalGridConfig(int numOfJobs, int numOfMultiProcessors, int maxThreadsPerBlock, int *numOfBlocks, int *blockSize) {
 	if (numOfJobs <= numOfMultiProcessors){
 		*numOfBlocks = numOfJobs;
@@ -111,18 +118,19 @@ __global__ void initializeArraysGPU(int **arrGPU, int arraySize) {
 
 int main(int argc, char *argv[])
 {
-	int arraySize = 1 << 20; // 1M integers
-	/* VARIABILI INUTILIZZATE
+	
+	/* Unused variables
 	int usesCache = 1; // 0: don't use cache, 1: use cache (default)
 	int cacheLineSize = 64 / sizeof(int); // # integers per cache line on CPU
 	int cacheLineSizeGPU = 128 / sizeof(int); // # integers per cache line on GPU
 	*/
+	int arraySize = 1 << 20; // 1M integers
 	int numCycles = 1000; // default # of repetitions on CPU
 	int numCyclesGPU = 30; // default # of repetitions on GPU
 	int *dataArray, *resultsCPU, *resultsGPU;
 	int blockSize = 1; // # of threads per block
 	int numBlocks = 1; // # of blocks
-	int numThreadsTotal; // # of threads running concurrently (= numThreads * numBlocks)
+	//int numThreadsTotal; // # of threads running concurrently (= numThreads * numBlocks)
 	int maxBlockSize = 1024;
 	int maxNumBlocks = 1024;
 
@@ -135,7 +143,7 @@ int main(int argc, char *argv[])
 	int **constraints; // array of constraints
 	// set constraint sizes
 	genericMalloc((void**)&constraintSizes, numConstraints * sizeof(int));
-	for (int i = 0; i < numThreadsTotal; i++) {
+	for (int i = 0; i < numConstraints; i++) {
 		if (i < a) {
 			constraintSizes[i] = 2;
 		}
@@ -153,13 +161,13 @@ int main(int argc, char *argv[])
 	for (int i = 0; i < numConstraints; i++) {
 		genericMalloc((void**)&constraints[i], constraintSizes[i] * sizeof(int));
 	}
-	// initialize constraints with random values
+	// initialize constraints with random values (temporary, to be changed in future benchmarks)
 	for (int i = 0; i < numConstraints; i++) {
 		fillConstraintRandom(constraints[i], constraintSizes[i], arraySize);
 	}
 	// allocate and initialize CPU and GPU results arrays
 	genericMalloc((void**)&resultsCPU, numConstraints * sizeof(int));
-	genericMalloc((void**)&resultsGPU, sizeof(int));
+	genericMalloc((void**)&resultsGPU, numConstraints * sizeof(int));
 	for (int i = 0; i < numConstraints; i++) {
 		resultsCPU[i] = 0;
 		resultsGPU[i] = 0;
@@ -198,10 +206,8 @@ int main(int argc, char *argv[])
 	double elapsedTimeCPU = 0.f, avgElapsedTimeCPU = 0.f, elapsedTimeGPU = 0.f, avgElapsedTimeGPU = 0.f;
 
 	// Measure CPU execution time
-	elapsedTimeCPU = 0.f;
-	avgElapsedTimeCPU = 0.f;
 	numCycles = minNumCyclesCPU;
-	while (elapsedTimeCPU < minRunTime) {// double numCycles until execution takes at least minRunTime
+	while (elapsedTimeCPU < minRunTime) {// double numCycles until execution takes at least minRunTime seconds
 		numCycles *= 2;
 		startClock = clock();
 		for (int i = 0; i < numConstraints; i++) {
@@ -214,16 +220,20 @@ int main(int argc, char *argv[])
 	avgElapsedTimeCPU = elapsedTimeCPU / numCycles;
 	printf("CPU: Elapsed time= %fs. Average execution time= %fs.\n", elapsedTimeCPU, avgElapsedTimeCPU);
 	
+
 	// Measure GPU execution time
-	elapsedTimeGPU = 0.f;
-	avgElapsedTimeGPU = 0.f;
 	numCyclesGPU = minNumCyclesGPU;
+	//		Prefetch data, constraints and resultsGPU arrays to GPU
 	cudaMemPrefetchAsync(dataArray, arraySize * sizeof(int), device);
-	/*PREFETCH OF CONSTRAINTS AND RESULTSGPU
-	*
-	*
-	*/
-	while (elapsedTimeGPU < minRunTime) {// double numCyclesGPU until execution takes at least minRunTime
+	cudaMemPrefetchAsync(constraints, numConstraints * sizeof(int*), device, NULL);
+	for (int i = 0; i < numConstraints; i++) {
+		cudaMemPrefetchAsync(constraints[i], constraintSizes[i] * sizeof(int), device, NULL);
+	}
+	cudaMemPrefetchAsync(constraintSizes, numConstraints * sizeof(int), device, NULL);
+	cudaMemPrefetchAsync(resultsGPU, numConstraints * sizeof(int), device, NULL);
+	cudaDeviceSynchronize();
+
+	while (elapsedTimeGPU < minRunTime) {// double numCyclesGPU until execution takes at least minRunTime seconds
 		numCyclesGPU *= 2;
 		startClock = clock();
 		constraintSumGPU << <numBlocks, blockSize >> > (dataArray, arraySize, resultsGPU, numCyclesGPU, numConstraints, constraints, constraintSizes );
@@ -243,11 +253,10 @@ int main(int argc, char *argv[])
 	*
 	*/
 
-	// free allocated memory
+	// Free allocated memory
 	genericFree(dataArray);
 	genericFree(resultsCPU);
 	genericFree(resultsGPU);
-	// FREE CONSTRAINT SIZES AND CONSTRAINTS
 	genericFree(constraintSizes);
 	for (int i = 0; i < numConstraints; i++) {
 		genericFree(constraints[i]);
