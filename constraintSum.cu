@@ -31,7 +31,7 @@ void constraintSum(int *dataArr, int arraySize, int *sumValue, int numCycles, in
 // sum integers dataArr[j], where j belongs to a constraint (array of indexes) on GPU
 __global__ void constraintSumGPU(int *dataArr, int arraySize, int *sumValues, int numCycles, int numConstraints, int **constraints, int *constraintSizes) {
 	int index = threadIdx.x + (blockIdx.x * blockDim.x);
-	if (index <= numConstraints) {
+	if (index < numConstraints) {
 		// constraintArr[index] is a valid constraint
 		int tempSum = 0;
 		for (int k = 0; k < numCycles; k++) {
