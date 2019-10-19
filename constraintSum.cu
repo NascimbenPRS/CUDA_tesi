@@ -115,8 +115,8 @@ int main(int argc, char *argv[])
 	int cacheLineSizeGPU = 128 / sizeof(int); // # integers per cache line on GPU
 	*/
 	int arraySize = 1 << 20; // 1M integers
-	int numCyclesCPU = 1000; // default # of repetitions on CPU
-	int numCyclesGPU = 30; // default # of repetitions on GPU
+	int numCyclesCPU = 1; // # of repetitions on CPU
+	int numCyclesGPU = 1; // # of repetitions on GPU
 	int *dataArray, *resultsCPU, *resultsGPU;
 	int blockSize = 1; // # of threads per block
 	int numBlocks = 1; // # of blocks
@@ -153,7 +153,7 @@ int main(int argc, char *argv[])
 	for (int i = 0; i < arraySize; i++) {
 		dataArray[i] = 1;
 	}
-	// set constraint sizes
+	// allocate and initialize constraint sizes
 	genericMalloc((void**)&constraintSizes, numConstraints * sizeof(int));
 	for (int i = 0; i < numConstraints; i++) {
 		if (i < a) {
