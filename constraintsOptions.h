@@ -51,7 +51,7 @@ void readOptionsConstraints(int argc, char* argv[], int *usesCache, int *arraySi
 		printf("tNumber of 3-variables constraints set to: %d\n", *b);
 	}
 	if (opt->getValue("c") != NULL) {
-		*a = atoi(opt->getValue("c"));
+		*c = atoi(opt->getValue("c"));
 		printf("tNumber of [4..128]-variables constraints set to: %d\n", *c);
 	}
 
