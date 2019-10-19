@@ -7,7 +7,7 @@
 #include <iostream>
 
 #include "commonFunctions.h" // generic malloc
-#include "sumOptions.h" // options handling
+#include "constraintsOptions.h" // constraints options handling
 
 
 /*
@@ -104,43 +104,55 @@ void getOptimalGridConfig(int numOfJobs, int numOfMultiProcessors, int maxThread
 }
 
 
-/*
-// initialize array of arrays using multiple threads
-__global__ void initializeArraysGPU(int **arrGPU, int arraySize) {
-	int index = threadIdx.x; // current thread ID
-	for (int i = 0; i < arraySize; i++) {
-		arrGPU[index][i] = 1;
-	}
-}
-*/
-
-
 
 int main(int argc, char *argv[])
 {
 	
-	/* Unused variables
+	
 	int usesCache = 1; // 0: don't use cache, 1: use cache (default)
+	/* Unused variables
 	int cacheLineSize = 64 / sizeof(int); // # integers per cache line on CPU
 	int cacheLineSizeGPU = 128 / sizeof(int); // # integers per cache line on GPU
 	*/
 	int arraySize = 1 << 20; // 1M integers
-	int numCycles = 1000; // default # of repetitions on CPU
+	int numCyclesCPU = 1000; // default # of repetitions on CPU
 	int numCyclesGPU = 30; // default # of repetitions on GPU
 	int *dataArray, *resultsCPU, *resultsGPU;
 	int blockSize = 1; // # of threads per block
 	int numBlocks = 1; // # of blocks
-	//int numThreadsTotal; // # of threads running concurrently (= numThreads * numBlocks)
-	int maxBlockSize = 1024;
-	int maxNumBlocks = 1024;
+	int maxBlockSize = 1024; // max # of threads per block
 
 	// Constraint variables
 	int a = 2 << 10; // # constraints of size 2 (2 variables involved, e.g. x1 + x2 = 0)
 	int b = 2 << 10; // # constraints of size 3
 	int c = 2 << 10; // # constraints of size in {4..128}
-	int numConstraints = a + b + c; // # all constraints
+	int numConstraints; // # all constraints
 	int *constraintSizes; // constraintSizes[i] == size of constraint i
 	int **constraints; // array of constraints
+	
+	// Get device info
+	cudaDeviceProp prop;
+	int device = -1;
+	cudaGetDevice(&device);
+	cudaDeviceSynchronize();
+	cudaGetDeviceProperties(&prop, device);
+	int numOfMultiProcessors = prop.multiProcessorCount;
+	// Print default settings
+	printf("\nSimulate work on constraints using arrays of integers.\n");
+	printf("-- number of multiprocessors= %d\n", numOfMultiProcessors);
+	printf("Default options: arraySize= %d integers, a= %d, b= %d, c= %d.\n", arraySize, a, b, c);
+
+	// check arraysize and number of constraints options from command line and update values; 
+	readOptionsConstraints(argc, argv, &usesCache, &arraySize, &a, &b, &c);
+	numConstraints = a + b + c;
+	// get optimal GPU grid configuration
+	getOptimalGridConfig(numConstraints, numOfMultiProcessors, maxBlockSize, &numBlocks, &blockSize);
+	
+	// allocate and initialize data array
+	genericMalloc((void**)&dataArray, arraySize * sizeof(int));
+	for (int i = 0; i < arraySize; i++) {
+		dataArray[i] = 1;
+	}
 	// set constraint sizes
 	genericMalloc((void**)&constraintSizes, numConstraints * sizeof(int));
 	for (int i = 0; i < numConstraints; i++) {
@@ -174,31 +186,6 @@ int main(int argc, char *argv[])
 	}
 	
 	
-	cudaDeviceProp prop;
-	int device = -1;
-	cudaGetDevice(&device);
-	cudaDeviceSynchronize();
-	cudaGetDeviceProperties(&prop, device);
-	int numOfMultiProcessors = prop.multiProcessorCount;
-
-	printf("\nSimulate work on constraints using arrays of integers\n");
-	printf("Default options: arraySize= %d integers.\n", arraySize);
-	printf("-- number of multiprocessors= %d\n", numOfMultiProcessors);
-
-	/* DA AGGIORNARE CON OPZIONI PER CONSTRAINTS (a,b,c,numConstraints ecc.)
-	readOptions(argc, argv, &usesCache, &numCycles, &numCyclesGPU, &arraySize); // read options from command line and update values accordingly
-	// don't use --rep
-	*/
-
-	// allocate and initialize data array
-	genericMalloc((void**)&dataArray, arraySize * sizeof(int));
-	for (int i = 0; i < arraySize; i++) {
-		dataArray[i] = 1;
-	}
-
-	// get optimal GPU grid configuration
-	getOptimalGridConfig(numConstraints, numOfMultiProcessors, maxBlockSize, &numBlocks, &blockSize);
-
 	// Time measurement
 	int minRunTime = 10; // elapsedTime must be at least minRunTime seconds
 	int minNumCyclesCPU = 1, minNumCyclesGPU = 1;
@@ -206,18 +193,18 @@ int main(int argc, char *argv[])
 	double elapsedTimeCPU = 0.f, avgElapsedTimeCPU = 0.f, elapsedTimeGPU = 0.f, avgElapsedTimeGPU = 0.f;
 
 	// Measure CPU execution time
-	numCycles = minNumCyclesCPU;
+	numCyclesCPU = minNumCyclesCPU;
 	while (elapsedTimeCPU < minRunTime) {// double numCycles until execution takes at least minRunTime seconds
-		numCycles *= 2;
+		numCyclesCPU *= 2;
 		startClock = clock();
 		for (int i = 0; i < numConstraints; i++) {
-			constraintSum(dataArray, arraySize, &resultsCPU[i], numCycles, constraints[i], constraintSizes[i]);
+			constraintSum(dataArray, arraySize, &resultsCPU[i], numCyclesCPU, constraints[i], constraintSizes[i]);
 		}
 		endClock = clock();
 		elapsedClocks = endClock - startClock;
 		elapsedTimeCPU = ((double)(elapsedClocks)) / (CLOCKS_PER_SEC);
 	}
-	avgElapsedTimeCPU = elapsedTimeCPU / numCycles;
+	avgElapsedTimeCPU = elapsedTimeCPU / numCyclesCPU;
 	printf("CPU: Elapsed time= %fs. Average execution time= %fs.\n", elapsedTimeCPU, avgElapsedTimeCPU);
 	
 
