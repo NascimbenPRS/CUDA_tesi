@@ -1,0 +1,53 @@
+numRepetitions= 500K
+
+numConstraints= 1000
+	Arraysize= 100:
+	- binary: CPU= 1.9588 s; GPU= 1.5052 s
+	- ternary: CPU= 2.9118 s; GPU= 1.8078 s
+	- random (4 to 100 variables): CPU= 57.8290 s GPU = 19.9471 s
+
+	Arraysize= 500:
+	- binary: CPU= 1.9417 s; GPU= 1.6958 s
+	- ternary: CPU= 2.9163 s; GPU= 2.0117 s
+	- random (4 to 128 variables): CPU= 73.3217s GPU = 29.3079s
+
+	Arraysize= 1000:
+	- binary: CPU= 1.9408 s; GPU= 1.8433 s
+	- ternary: CPU= 2.9455 s; GPU= 2.1386 s
+	- random (4 to 128 variables): CPU= 73.4758s GPU = 31.7653s
+
+-----------------------------------------------------------------
+
+numConstraints= 2000
+	Arraysize= 100:
+	- binary: CPU= 3.8765 s; GPU= 1.5215 s
+	- ternary: CPU= 5.8308 s; GPU= 1.8275 s
+	- random (4 to 100 variables): CPU= 117.0880 s; GPU = 21.5966 s
+
+	Arraysize= 500:
+	- binary: CPU= 3.8781 s; GPU= 1.7066 s
+	- ternary: CPU= 5.8283 s; GPU= 2.0468 s
+	- random (4 to 128 variables): CPU= 147.547197 GPU = 31.775816
+
+	Arraysize= 1000:
+	- binary: CPU= 3.9051 s; GPU= 1.8584 s
+	- ternary: CPU= 6.2849 s; GPU= 2.1775 s
+	- random (4 to 128 variables): CPU= 146.952239 GPU = 34.676278
+
+-----------------------------------------------------------------
+
+numConstraints= 4000
+	Arraysize= 100:
+	- binary: CPU= 7.946 s; GPU= 1.5946 s
+	- ternary: CPU= 11.6850 s; GPU= 2.0239 s
+	- random (4 to 100 variables): CPU= 235.5776 s ;GPU = 35.8017 s
+
+	Arraysize= 500:
+	- binary: CPU= 7.7690 s; GPU= 1.8221 s
+	- ternary: CPU= 11.6698 s; GPU= 2.3713 s
+	- random (4 to 128 variables): CPU= 291.003033 GPU = 50.416928
+
+	Arraysize= 1000:
+	- binary: CPU= 7.8123 s; GPU= 1.9983 s
+	- ternary: CPU= 12.1173 s; GPU= 2.5933 s
+	- random (4 to 128 variables): CPU= 296.308397 GPU = 54.885056
