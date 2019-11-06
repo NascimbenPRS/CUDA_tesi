@@ -51,3 +51,59 @@ numConstraints= 4000
 	- binary: CPU= 7.8123 s; GPU= 1.9983 s
 	- ternary: CPU= 12.1173 s; GPU= 2.5933 s
 	- random (4 to 128 variables): CPU= 296.308397 GPU = 54.885056
+	
+-----------------------------------------------------------------
+-------------------------- PART 2 -------------------------------
+-----------------------------------------------------------------
+	
+	numConstraints= 4000
+	Arraysize= 2000:
+	- binary: CPU= 7.8104 s; GPU= 2.1114 s
+	- ternary: CPU= 11.7171 s; GPU= 2.7742 s
+	- random (4 to 128 variables): CPU= 291.023 s GPU = 58.252 s
+
+	Arraysize= 4000:
+	- binary: CPU= 7.8340 s; GPU= 2.1806 s
+	- ternary: CPU= 11.6751 s; GPU= 2.868192 s
+	- random (4 to 128 variables): CPU= 291.123 s GPU = 59.784 s
+
+	Arraysize= 8000:
+	- binary: CPU= 7.8164 s; GPU= 2.2055 s
+	- ternary: CPU= 11.6895 s; GPU= 2.9219 s
+	- random (4 to 128 variables): CPU= 295.151 s GPU = 60.982 s
+
+-----------------------------------------------------------------
+numConstraints= 8000
+	Arraysize= 2000:
+	- binary: CPU= 15.6489 s; GPU= 3.2572 s
+	- ternary: CPU= 23.3978 s; GPU= 4.7034 s
+	- random (4 to 100 variables): CPU= 585.986 s GPU = 110.838 s
+
+	Arraysize= 4000:
+	- binary: CPU= 15.5543 s; GPU= 3.4123 s
+	- ternary: CPU= 23.3234 s; GPU= 4.9088 s
+	- random (4 to 128 variables): CPU= 589.880 s GPU = 114.682 s
+
+	Arraysize= 8000:
+	- binary: CPU= 15.5348 s; GPU= 3.4897 s
+	- ternary: CPU= 23.78037 s; GPU= 5.0775s
+	- random (4 to 128 variables): CPU= 584.403 s GPU = 116.777 s
+
+-----------------------------------------------------------------
+numConstraints= 16000
+	Arraysize= 2000:
+	- binary: CPU= 31.1699 s; GPU= 9.5614 s
+	- ternary: CPU= 52.2780 s; GPU= 13.1059 s
+	- random (4 to 100 variables): CPU= 1171.578 s GPU = 292.051 s
+
+	Arraysize= 4000:
+	- binary: CPU= 31.6828 s; GPU= 9.9156 s
+	- ternary: CPU= 52.2539 s; GPU= 13.7707 s
+	- random (4 to 128 variables): CPU= 1188.921 s GPU = 302.2472 s
+
+	Arraysize= 8000:
+	- binary: CPU= 31.1798 s; GPU= 10.1360 s
+	- ternary: CPU= 51.5077 s; GPU= 14.0605 s
+	- random (4 to 128 variables): CPU= 1170.993s GPU = 307.823s
+
+-----------------------------------------------------------------
