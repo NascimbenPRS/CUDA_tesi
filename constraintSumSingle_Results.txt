@@ -1,0 +1,580 @@
+
+ARRAYSIZE: 500 integers
+NUMBER OF CONSTRAINTS: 1000
+NUMBER OF REPETITIONS: 10000
+
+ConstrSize= 0:	numConstr= 0,	Exec time= 0.002956,	Normalized time= inf;
+ConstrSize= 1:	numConstr= 0,	Exec time= 0.000039,	Normalized time= inf;
+ConstrSize= 2:	numConstr= 0,	Exec time= 0.000036,	Normalized time= inf;
+ConstrSize= 3:	numConstr= 0,	Exec time= 0.000036,	Normalized time= inf;
+ConstrSize= 4:	numConstr= 11,	Exec time= 0.013001,	Normalized time= 0.000295;
+ConstrSize= 5:	numConstr= 9,	Exec time= 0.020169,	Normalized time= 0.000448;
+ConstrSize= 6:	numConstr= 6,	Exec time= 0.025423,	Normalized time= 0.000706;
+ConstrSize= 7:	numConstr= 7,	Exec time= 0.023982,	Normalized time= 0.000489;
+ConstrSize= 8:	numConstr= 11,	Exec time= 0.016775,	Normalized time= 0.000191;
+ConstrSize= 9:	numConstr= 2,	Exec time= 0.023017,	Normalized time= 0.001279;
+ConstrSize= 10:	numConstr= 5,	Exec time= 0.032643,	Normalized time= 0.000653;
+ConstrSize= 11:	numConstr= 15,	Exec time= 0.034086,	Normalized time= 0.000207;
+ConstrSize= 12:	numConstr= 8,	Exec time= 0.022876,	Normalized time= 0.000238;
+ConstrSize= 13:	numConstr= 6,	Exec time= 0.029242,	Normalized time= 0.000375;
+ConstrSize= 14:	numConstr= 6,	Exec time= 0.035093,	Normalized time= 0.000418;
+ConstrSize= 15:	numConstr= 5,	Exec time= 0.041073,	Normalized time= 0.000548;
+ConstrSize= 16:	numConstr= 11,	Exec time= 0.033375,	Normalized time= 0.000190;
+ConstrSize= 17:	numConstr= 6,	Exec time= 0.035713,	Normalized time= 0.000350;
+ConstrSize= 18:	numConstr= 8,	Exec time= 0.047019,	Normalized time= 0.000327;
+ConstrSize= 19:	numConstr= 13,	Exec time= 0.041645,	Normalized time= 0.000169;
+ConstrSize= 20:	numConstr= 7,	Exec time= 0.034203,	Normalized time= 0.000244;
+ConstrSize= 21:	numConstr= 3,	Exec time= 0.042861,	Normalized time= 0.000680;
+ConstrSize= 22:	numConstr= 11,	Exec time= 0.053393,	Normalized time= 0.000221;
+ConstrSize= 23:	numConstr= 10,	Exec time= 0.053167,	Normalized time= 0.000231;
+ConstrSize= 24:	numConstr= 8,	Exec time= 0.047076,	Normalized time= 0.000245;
+ConstrSize= 25:	numConstr= 8,	Exec time= 0.054435,	Normalized time= 0.000272;
+ConstrSize= 26:	numConstr= 5,	Exec time= 0.059707,	Normalized time= 0.000459;
+ConstrSize= 27:	numConstr= 7,	Exec time= 0.060248,	Normalized time= 0.000319;
+ConstrSize= 28:	numConstr= 7,	Exec time= 0.054535,	Normalized time= 0.000278;
+ConstrSize= 29:	numConstr= 5,	Exec time= 0.059626,	Normalized time= 0.000411;
+ConstrSize= 30:	numConstr= 13,	Exec time= 0.068898,	Normalized time= 0.000177;
+ConstrSize= 31:	numConstr= 10,	Exec time= 0.059156,	Normalized time= 0.000191;
+ConstrSize= 32:	numConstr= 8,	Exec time= 0.053679,	Normalized time= 0.000210;
+ConstrSize= 33:	numConstr= 8,	Exec time= 0.066951,	Normalized time= 0.000254;
+ConstrSize= 34:	numConstr= 9,	Exec time= 0.073558,	Normalized time= 0.000240;
+ConstrSize= 35:	numConstr= 8,	Exec time= 0.065340,	Normalized time= 0.000233;
+ConstrSize= 36:	numConstr= 9,	Exec time= 0.069209,	Normalized time= 0.000214;
+ConstrSize= 37:	numConstr= 7,	Exec time= 0.074037,	Normalized time= 0.000286;
+ConstrSize= 38:	numConstr= 7,	Exec time= 0.082188,	Normalized time= 0.000309;
+ConstrSize= 39:	numConstr= 5,	Exec time= 0.080317,	Normalized time= 0.000412;
+ConstrSize= 40:	numConstr= 5,	Exec time= 0.064310,	Normalized time= 0.000322;
+ConstrSize= 41:	numConstr= 8,	Exec time= 0.082662,	Normalized time= 0.000252;
+ConstrSize= 42:	numConstr= 10,	Exec time= 0.089743,	Normalized time= 0.000214;
+ConstrSize= 43:	numConstr= 12,	Exec time= 0.076700,	Normalized time= 0.000149;
+ConstrSize= 44:	numConstr= 7,	Exec time= 0.070331,	Normalized time= 0.000228;
+ConstrSize= 45:	numConstr= 6,	Exec time= 0.076810,	Normalized time= 0.000284;
+ConstrSize= 46:	numConstr= 11,	Exec time= 0.096135,	Normalized time= 0.000190;
+ConstrSize= 47:	numConstr= 12,	Exec time= 0.097639,	Normalized time= 0.000173;
+ConstrSize= 48:	numConstr= 6,	Exec time= 0.077889,	Normalized time= 0.000270;
+ConstrSize= 49:	numConstr= 9,	Exec time= 0.094619,	Normalized time= 0.000215;
+ConstrSize= 50:	numConstr= 11,	Exec time= 0.102967,	Normalized time= 0.000187;
+ConstrSize= 51:	numConstr= 5,	Exec time= 0.090251,	Normalized time= 0.000354;
+ConstrSize= 52:	numConstr= 5,	Exec time= 0.082820,	Normalized time= 0.000319;
+ConstrSize= 53:	numConstr= 6,	Exec time= 0.102935,	Normalized time= 0.000324;
+ConstrSize= 54:	numConstr= 7,	Exec time= 0.096495,	Normalized time= 0.000255;
+ConstrSize= 55:	numConstr= 6,	Exec time= 0.095389,	Normalized time= 0.000289;
+ConstrSize= 56:	numConstr= 11,	Exec time= 0.104405,	Normalized time= 0.000169;
+ConstrSize= 57:	numConstr= 9,	Exec time= 0.110074,	Normalized time= 0.000215;
+ConstrSize= 58:	numConstr= 8,	Exec time= 0.100603,	Normalized time= 0.000217;
+ConstrSize= 59:	numConstr= 13,	Exec time= 0.115300,	Normalized time= 0.000150;
+ConstrSize= 60:	numConstr= 6,	Exec time= 0.095487,	Normalized time= 0.000265;
+ConstrSize= 61:	numConstr= 9,	Exec time= 0.116122,	Normalized time= 0.000212;
+ConstrSize= 62:	numConstr= 10,	Exec time= 0.124732,	Normalized time= 0.000201;
+ConstrSize= 63:	numConstr= 12,	Exec time= 0.122657,	Normalized time= 0.000162;
+ConstrSize= 64:	numConstr= 7,	Exec time= 0.118350,	Normalized time= 0.000264;
+ConstrSize= 65:	numConstr= 3,	Exec time= 0.107768,	Normalized time= 0.000553;
+ConstrSize= 66:	numConstr= 8,	Exec time= 0.111867,	Normalized time= 0.000212;
+ConstrSize= 67:	numConstr= 8,	Exec time= 0.133386,	Normalized time= 0.000249;
+ConstrSize= 68:	numConstr= 10,	Exec time= 0.126504,	Normalized time= 0.000186;
+ConstrSize= 69:	numConstr= 8,	Exec time= 0.113268,	Normalized time= 0.000205;
+ConstrSize= 70:	numConstr= 8,	Exec time= 0.139241,	Normalized time= 0.000249;
+ConstrSize= 71:	numConstr= 4,	Exec time= 0.117978,	Normalized time= 0.000415;
+ConstrSize= 72:	numConstr= 8,	Exec time= 0.112704,	Normalized time= 0.000196;
+ConstrSize= 73:	numConstr= 9,	Exec time= 0.118787,	Normalized time= 0.000181;
+ConstrSize= 74:	numConstr= 9,	Exec time= 0.142748,	Normalized time= 0.000214;
+ConstrSize= 75:	numConstr= 11,	Exec time= 0.145662,	Normalized time= 0.000177;
+ConstrSize= 76:	numConstr= 8,	Exec time= 0.138956,	Normalized time= 0.000229;
+ConstrSize= 77:	numConstr= 8,	Exec time= 0.124749,	Normalized time= 0.000203;
+ConstrSize= 78:	numConstr= 6,	Exec time= 0.153630,	Normalized time= 0.000328;
+ConstrSize= 79:	numConstr= 7,	Exec time= 0.128095,	Normalized time= 0.000232;
+ConstrSize= 80:	numConstr= 15,	Exec time= 0.124197,	Normalized time= 0.000103;
+ConstrSize= 81:	numConstr= 11,	Exec time= 0.131769,	Normalized time= 0.000148;
+ConstrSize= 82:	numConstr= 7,	Exec time= 0.136281,	Normalized time= 0.000237;
+ConstrSize= 83:	numConstr= 2,	Exec time= 0.159436,	Normalized time= 0.000960;
+ConstrSize= 84:	numConstr= 3,	Exec time= 0.128507,	Normalized time= 0.000510;
+ConstrSize= 85:	numConstr= 8,	Exec time= 0.159685,	Normalized time= 0.000235;
+ConstrSize= 86:	numConstr= 7,	Exec time= 0.143627,	Normalized time= 0.000239;
+ConstrSize= 87:	numConstr= 10,	Exec time= 0.169617,	Normalized time= 0.000195;
+ConstrSize= 88:	numConstr= 5,	Exec time= 0.135640,	Normalized time= 0.000308;
+ConstrSize= 89:	numConstr= 14,	Exec time= 0.164932,	Normalized time= 0.000132;
+ConstrSize= 90:	numConstr= 10,	Exec time= 0.173631,	Normalized time= 0.000193;
+ConstrSize= 91:	numConstr= 4,	Exec time= 0.173925,	Normalized time= 0.000478;
+ConstrSize= 92:	numConstr= 7,	Exec time= 0.141101,	Normalized time= 0.000219;
+ConstrSize= 93:	numConstr= 5,	Exec time= 0.147918,	Normalized time= 0.000318;
+ConstrSize= 94:	numConstr= 8,	Exec time= 0.154946,	Normalized time= 0.000206;
+ConstrSize= 95:	numConstr= 7,	Exec time= 0.153624,	Normalized time= 0.000231;
+ConstrSize= 96:	numConstr= 15,	Exec time= 0.178423,	Normalized time= 0.000124;
+ConstrSize= 97:	numConstr= 4,	Exec time= 0.156520,	Normalized time= 0.000403;
+ConstrSize= 98:	numConstr= 6,	Exec time= 0.161058,	Normalized time= 0.000274;
+ConstrSize= 99:	numConstr= 10,	Exec time= 0.160612,	Normalized time= 0.000162;
+ConstrSize= 100:	numConstr= 7,	Exec time= 0.155723,	Normalized time= 0.000222;
+ConstrSize= 101:	numConstr= 6,	Exec time= 0.190268,	Normalized time= 0.000314;
+ConstrSize= 102:	numConstr= 9,	Exec time= 0.196933,	Normalized time= 0.000215;
+ConstrSize= 103:	numConstr= 4,	Exec time= 0.196951,	Normalized time= 0.000478;
+ConstrSize= 104:	numConstr= 10,	Exec time= 0.194917,	Normalized time= 0.000187;
+ConstrSize= 105:	numConstr= 8,	Exec time= 0.164783,	Normalized time= 0.000196;
+ConstrSize= 106:	numConstr= 13,	Exec time= 0.201397,	Normalized time= 0.000146;
+ConstrSize= 107:	numConstr= 6,	Exec time= 0.171618,	Normalized time= 0.000267;
+ConstrSize= 108:	numConstr= 7,	Exec time= 0.163541,	Normalized time= 0.000216;
+ConstrSize= 109:	numConstr= 12,	Exec time= 0.201366,	Normalized time= 0.000154;
+ConstrSize= 110:	numConstr= 6,	Exec time= 0.203351,	Normalized time= 0.000308;
+ConstrSize= 111:	numConstr= 12,	Exec time= 0.210540,	Normalized time= 0.000158;
+ConstrSize= 112:	numConstr= 10,	Exec time= 0.170683,	Normalized time= 0.000152;
+ConstrSize= 113:	numConstr= 1,	Exec time= 0.177853,	Normalized time= 0.001574;
+ConstrSize= 114:	numConstr= 6,	Exec time= 0.215409,	Normalized time= 0.000315;
+ConstrSize= 115:	numConstr= 7,	Exec time= 0.215001,	Normalized time= 0.000267;
+ConstrSize= 116:	numConstr= 7,	Exec time= 0.206162,	Normalized time= 0.000254;
+ConstrSize= 117:	numConstr= 4,	Exec time= 0.179672,	Normalized time= 0.000384;
+ConstrSize= 118:	numConstr= 8,	Exec time= 0.217410,	Normalized time= 0.000230;
+ConstrSize= 119:	numConstr= 6,	Exec time= 0.226486,	Normalized time= 0.000317;
+ConstrSize= 120:	numConstr= 7,	Exec time= 0.215598,	Normalized time= 0.000257;
+ConstrSize= 121:	numConstr= 4,	Exec time= 0.186728,	Normalized time= 0.000386;
+ConstrSize= 122:	numConstr= 13,	Exec time= 0.196272,	Normalized time= 0.000124;
+ConstrSize= 123:	numConstr= 9,	Exec time= 0.230118,	Normalized time= 0.000208;
+ConstrSize= 124:	numConstr= 10,	Exec time= 0.190056,	Normalized time= 0.000153;
+ConstrSize= 125:	numConstr= 14,	Exec time= 0.228559,	Normalized time= 0.000131;
+ConstrSize= 126:	numConstr= 9,	Exec time= 0.200962,	Normalized time= 0.000177;
+ConstrSize= 127:	numConstr= 10,	Exec time= 0.232500,	Normalized time= 0.000183;
+ConstrSize= 128:	numConstr= 7,	Exec time= 0.230781,	Normalized time= 0.000258;
+
+CPU: Elapsed time= 1.466769s. Average execution time= 0.000147s.
+GPU: Total elapsed time= 14.838638s. Average execution time= 0.001484s.
+Same results on CPU and GPU
+
+
+
+
+--------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------
+
+
+
+ARRAYSIZE: 1000 integers
+NUMBER OF CONSTRAINTS: 4000
+NUMBER OF REPETITIONS: 10000
+
+ConstrSize= 0:	numConstr= 0,	Exec time= 0.011223,	Normalized time= inf;
+ConstrSize= 1:	numConstr= 0,	Exec time= 0.000046,	Normalized time= inf;
+ConstrSize= 2:	numConstr= 0,	Exec time= 0.000043,	Normalized time= inf;
+ConstrSize= 3:	numConstr= 0,	Exec time= 0.000041,	Normalized time= inf;
+ConstrSize= 4:	numConstr= 38,	Exec time= 0.013033,	Normalized time= 0.000086;
+ConstrSize= 5:	numConstr= 32,	Exec time= 0.020033,	Normalized time= 0.000125;
+ConstrSize= 6:	numConstr= 19,	Exec time= 0.026812,	Normalized time= 0.000235;
+ConstrSize= 7:	numConstr= 28,	Exec time= 0.027253,	Normalized time= 0.000139;
+ConstrSize= 8:	numConstr= 38,	Exec time= 0.019653,	Normalized time= 0.000065;
+ConstrSize= 9:	numConstr= 33,	Exec time= 0.029394,	Normalized time= 0.000099;
+ConstrSize= 10:	numConstr= 36,	Exec time= 0.033497,	Normalized time= 0.000093;
+ConstrSize= 11:	numConstr= 32,	Exec time= 0.033669,	Normalized time= 0.000096;
+ConstrSize= 12:	numConstr= 37,	Exec time= 0.026640,	Normalized time= 0.000060;
+ConstrSize= 13:	numConstr= 29,	Exec time= 0.032923,	Normalized time= 0.000087;
+ConstrSize= 14:	numConstr= 23,	Exec time= 0.039073,	Normalized time= 0.000121;
+ConstrSize= 15:	numConstr= 32,	Exec time= 0.041722,	Normalized time= 0.000087;
+ConstrSize= 16:	numConstr= 31,	Exec time= 0.034733,	Normalized time= 0.000070;
+ConstrSize= 17:	numConstr= 30,	Exec time= 0.040725,	Normalized time= 0.000080;
+ConstrSize= 18:	numConstr= 28,	Exec time= 0.047125,	Normalized time= 0.000094;
+ConstrSize= 19:	numConstr= 53,	Exec time= 0.049248,	Normalized time= 0.000049;
+ConstrSize= 20:	numConstr= 31,	Exec time= 0.041641,	Normalized time= 0.000067;
+ConstrSize= 21:	numConstr= 24,	Exec time= 0.047558,	Normalized time= 0.000094;
+ConstrSize= 22:	numConstr= 32,	Exec time= 0.055172,	Normalized time= 0.000078;
+ConstrSize= 23:	numConstr= 33,	Exec time= 0.057595,	Normalized time= 0.000076;
+ConstrSize= 24:	numConstr= 36,	Exec time= 0.047540,	Normalized time= 0.000055;
+ConstrSize= 25:	numConstr= 37,	Exec time= 0.054364,	Normalized time= 0.000059;
+ConstrSize= 26:	numConstr= 30,	Exec time= 0.061587,	Normalized time= 0.000079;
+ConstrSize= 27:	numConstr= 30,	Exec time= 0.062699,	Normalized time= 0.000077;
+ConstrSize= 28:	numConstr= 34,	Exec time= 0.055454,	Normalized time= 0.000058;
+ConstrSize= 29:	numConstr= 29,	Exec time= 0.062542,	Normalized time= 0.000074;
+ConstrSize= 30:	numConstr= 27,	Exec time= 0.073004,	Normalized time= 0.000090;
+ConstrSize= 31:	numConstr= 29,	Exec time= 0.068703,	Normalized time= 0.000076;
+ConstrSize= 32:	numConstr= 33,	Exec time= 0.061924,	Normalized time= 0.000059;
+ConstrSize= 33:	numConstr= 30,	Exec time= 0.069184,	Normalized time= 0.000070;
+ConstrSize= 34:	numConstr= 42,	Exec time= 0.076160,	Normalized time= 0.000053;
+ConstrSize= 35:	numConstr= 34,	Exec time= 0.075730,	Normalized time= 0.000064;
+ConstrSize= 36:	numConstr= 24,	Exec time= 0.069735,	Normalized time= 0.000081;
+ConstrSize= 37:	numConstr= 28,	Exec time= 0.077855,	Normalized time= 0.000075;
+ConstrSize= 38:	numConstr= 33,	Exec time= 0.083491,	Normalized time= 0.000067;
+ConstrSize= 39:	numConstr= 25,	Exec time= 0.084913,	Normalized time= 0.000087;
+ConstrSize= 40:	numConstr= 30,	Exec time= 0.077708,	Normalized time= 0.000065;
+ConstrSize= 41:	numConstr= 29,	Exec time= 0.087869,	Normalized time= 0.000074;
+ConstrSize= 42:	numConstr= 36,	Exec time= 0.089858,	Normalized time= 0.000059;
+ConstrSize= 43:	numConstr= 34,	Exec time= 0.090545,	Normalized time= 0.000062;
+ConstrSize= 44:	numConstr= 32,	Exec time= 0.083042,	Normalized time= 0.000059;
+ConstrSize= 45:	numConstr= 34,	Exec time= 0.087169,	Normalized time= 0.000057;
+ConstrSize= 46:	numConstr= 32,	Exec time= 0.098273,	Normalized time= 0.000067;
+ConstrSize= 47:	numConstr= 39,	Exec time= 0.101841,	Normalized time= 0.000056;
+ConstrSize= 48:	numConstr= 29,	Exec time= 0.077678,	Normalized time= 0.000056;
+ConstrSize= 49:	numConstr= 34,	Exec time= 0.098991,	Normalized time= 0.000059;
+ConstrSize= 50:	numConstr= 37,	Exec time= 0.105766,	Normalized time= 0.000057;
+ConstrSize= 51:	numConstr= 26,	Exec time= 0.103923,	Normalized time= 0.000078;
+ConstrSize= 52:	numConstr= 32,	Exec time= 0.097444,	Normalized time= 0.000059;
+ConstrSize= 53:	numConstr= 35,	Exec time= 0.125345,	Normalized time= 0.000068;
+ConstrSize= 54:	numConstr= 36,	Exec time= 0.113535,	Normalized time= 0.000058;
+ConstrSize= 55:	numConstr= 37,	Exec time= 0.114450,	Normalized time= 0.000056;
+ConstrSize= 56:	numConstr= 45,	Exec time= 0.104789,	Normalized time= 0.000042;
+ConstrSize= 57:	numConstr= 41,	Exec time= 0.112120,	Normalized time= 0.000048;
+ConstrSize= 58:	numConstr= 27,	Exec time= 0.101804,	Normalized time= 0.000065;
+ConstrSize= 59:	numConstr= 35,	Exec time= 0.120629,	Normalized time= 0.000058;
+ConstrSize= 60:	numConstr= 42,	Exec time= 0.110289,	Normalized time= 0.000044;
+ConstrSize= 61:	numConstr= 29,	Exec time= 0.121689,	Normalized time= 0.000069;
+ConstrSize= 62:	numConstr= 29,	Exec time= 0.126487,	Normalized time= 0.000070;
+ConstrSize= 63:	numConstr= 41,	Exec time= 0.126126,	Normalized time= 0.000049;
+ConstrSize= 64:	numConstr= 39,	Exec time= 0.122314,	Normalized time= 0.000049;
+ConstrSize= 65:	numConstr= 27,	Exec time= 0.124724,	Normalized time= 0.000071;
+ConstrSize= 66:	numConstr= 24,	Exec time= 0.131679,	Normalized time= 0.000083;
+ConstrSize= 67:	numConstr= 35,	Exec time= 0.135666,	Normalized time= 0.000058;
+ConstrSize= 68:	numConstr= 33,	Exec time= 0.132299,	Normalized time= 0.000059;
+ConstrSize= 69:	numConstr= 31,	Exec time= 0.135604,	Normalized time= 0.000063;
+ConstrSize= 70:	numConstr= 22,	Exec time= 0.139929,	Normalized time= 0.000091;
+ConstrSize= 71:	numConstr= 36,	Exec time= 0.139892,	Normalized time= 0.000055;
+ConstrSize= 72:	numConstr= 34,	Exec time= 0.130547,	Normalized time= 0.000053;
+ConstrSize= 73:	numConstr= 30,	Exec time= 0.143167,	Normalized time= 0.000065;
+ConstrSize= 74:	numConstr= 25,	Exec time= 0.148915,	Normalized time= 0.000080;
+ConstrSize= 75:	numConstr= 27,	Exec time= 0.148531,	Normalized time= 0.000073;
+ConstrSize= 76:	numConstr= 31,	Exec time= 0.142532,	Normalized time= 0.000060;
+ConstrSize= 77:	numConstr= 35,	Exec time= 0.149561,	Normalized time= 0.000055;
+ConstrSize= 78:	numConstr= 36,	Exec time= 0.157976,	Normalized time= 0.000056;
+ConstrSize= 79:	numConstr= 28,	Exec time= 0.152095,	Normalized time= 0.000069;
+ConstrSize= 80:	numConstr= 42,	Exec time= 0.149814,	Normalized time= 0.000045;
+ConstrSize= 81:	numConstr= 36,	Exec time= 0.157695,	Normalized time= 0.000054;
+ConstrSize= 82:	numConstr= 30,	Exec time= 0.159062,	Normalized time= 0.000065;
+ConstrSize= 83:	numConstr= 32,	Exec time= 0.161348,	Normalized time= 0.000061;
+ConstrSize= 84:	numConstr= 22,	Exec time= 0.132042,	Normalized time= 0.000071;
+ConstrSize= 85:	numConstr= 32,	Exec time= 0.165626,	Normalized time= 0.000061;
+ConstrSize= 86:	numConstr= 29,	Exec time= 0.165492,	Normalized time= 0.000066;
+ConstrSize= 87:	numConstr= 36,	Exec time= 0.172902,	Normalized time= 0.000055;
+ConstrSize= 88:	numConstr= 37,	Exec time= 0.167004,	Normalized time= 0.000051;
+ConstrSize= 89:	numConstr= 35,	Exec time= 0.168215,	Normalized time= 0.000054;
+ConstrSize= 90:	numConstr= 29,	Exec time= 0.171623,	Normalized time= 0.000066;
+ConstrSize= 91:	numConstr= 36,	Exec time= 0.173799,	Normalized time= 0.000053;
+ConstrSize= 92:	numConstr= 24,	Exec time= 0.169778,	Normalized time= 0.000077;
+ConstrSize= 93:	numConstr= 27,	Exec time= 0.173079,	Normalized time= 0.000069;
+ConstrSize= 94:	numConstr= 27,	Exec time= 0.183078,	Normalized time= 0.000072;
+ConstrSize= 95:	numConstr= 41,	Exec time= 0.182019,	Normalized time= 0.000047;
+ConstrSize= 96:	numConstr= 38,	Exec time= 0.182068,	Normalized time= 0.000050;
+ConstrSize= 97:	numConstr= 26,	Exec time= 0.187839,	Normalized time= 0.000074;
+ConstrSize= 98:	numConstr= 30,	Exec time= 0.191637,	Normalized time= 0.000065;
+ConstrSize= 99:	numConstr= 31,	Exec time= 0.196864,	Normalized time= 0.000064;
+ConstrSize= 100:	numConstr= 30,	Exec time= 0.184548,	Normalized time= 0.000062;
+ConstrSize= 101:	numConstr= 33,	Exec time= 0.191846,	Normalized time= 0.000058;
+ConstrSize= 102:	numConstr= 30,	Exec time= 0.197133,	Normalized time= 0.000064;
+ConstrSize= 103:	numConstr= 31,	Exec time= 0.202311,	Normalized time= 0.000063;
+ConstrSize= 104:	numConstr= 26,	Exec time= 0.195469,	Normalized time= 0.000072;
+ConstrSize= 105:	numConstr= 29,	Exec time= 0.167836,	Normalized time= 0.000055;
+ConstrSize= 106:	numConstr= 32,	Exec time= 0.208370,	Normalized time= 0.000061;
+ConstrSize= 107:	numConstr= 31,	Exec time= 0.202249,	Normalized time= 0.000061;
+ConstrSize= 108:	numConstr= 31,	Exec time= 0.200217,	Normalized time= 0.000060;
+ConstrSize= 109:	numConstr= 31,	Exec time= 0.202898,	Normalized time= 0.000060;
+ConstrSize= 110:	numConstr= 30,	Exec time= 0.210500,	Normalized time= 0.000064;
+ConstrSize= 111:	numConstr= 45,	Exec time= 0.220381,	Normalized time= 0.000044;
+ConstrSize= 112:	numConstr= 34,	Exec time= 0.203626,	Normalized time= 0.000053;
+ConstrSize= 113:	numConstr= 21,	Exec time= 0.215456,	Normalized time= 0.000091;
+ConstrSize= 114:	numConstr= 26,	Exec time= 0.219321,	Normalized time= 0.000074;
+ConstrSize= 115:	numConstr= 36,	Exec time= 0.223001,	Normalized time= 0.000054;
+ConstrSize= 116:	numConstr= 27,	Exec time= 0.213467,	Normalized time= 0.000068;
+ConstrSize= 117:	numConstr= 34,	Exec time= 0.223962,	Normalized time= 0.000056;
+ConstrSize= 118:	numConstr= 35,	Exec time= 0.227262,	Normalized time= 0.000055;
+ConstrSize= 119:	numConstr= 28,	Exec time= 0.224544,	Normalized time= 0.000067;
+ConstrSize= 120:	numConstr= 24,	Exec time= 0.217267,	Normalized time= 0.000075;
+ConstrSize= 121:	numConstr= 27,	Exec time= 0.221826,	Normalized time= 0.000068;
+ConstrSize= 122:	numConstr= 39,	Exec time= 0.236924,	Normalized time= 0.000050;
+ConstrSize= 123:	numConstr= 25,	Exec time= 0.233645,	Normalized time= 0.000076;
+ConstrSize= 124:	numConstr= 41,	Exec time= 0.227779,	Normalized time= 0.000045;
+ConstrSize= 125:	numConstr= 42,	Exec time= 0.238238,	Normalized time= 0.000045;
+ConstrSize= 126:	numConstr= 22,	Exec time= 0.236153,	Normalized time= 0.000085;
+ConstrSize= 127:	numConstr= 34,	Exec time= 0.239570,	Normalized time= 0.000055;
+ConstrSize= 128:	numConstr= 32,	Exec time= 0.231629,	Normalized time= 0.000057;
+
+CPU: Elapsed time= 5.834507s. Average execution time= 0.000583s.
+GPU: Total elapsed time= 16.154950s. Average execution time= 0.001615s.
+Same results on CPU and GPU
+
+
+
+--------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------
+
+
+
+ARRAYSIZE: 4000 integers
+NUMBER OF CONSTRAINTS: 8000
+NUMBER OF REPETITIONS: 10000
+
+ConstrSize= 0:	numConstr= 0,	Exec time= 0.022297,	Normalized time= inf;
+ConstrSize= 1:	numConstr= 0,	Exec time= 0.000062,	Normalized time= inf;
+ConstrSize= 2:	numConstr= 0,	Exec time= 0.000051,	Normalized time= inf;
+ConstrSize= 3:	numConstr= 0,	Exec time= 0.000051,	Normalized time= inf;
+ConstrSize= 4:	numConstr= 70,	Exec time= 0.013436,	Normalized time= 0.000048;
+ConstrSize= 5:	numConstr= 69,	Exec time= 0.020344,	Normalized time= 0.000059;
+ConstrSize= 6:	numConstr= 49,	Exec time= 0.026714,	Normalized time= 0.000091;
+ConstrSize= 7:	numConstr= 64,	Exec time= 0.027378,	Normalized time= 0.000061;
+ConstrSize= 8:	numConstr= 65,	Exec time= 0.020298,	Normalized time= 0.000039;
+ConstrSize= 9:	numConstr= 67,	Exec time= 0.029967,	Normalized time= 0.000050;
+ConstrSize= 10:	numConstr= 61,	Exec time= 0.033484,	Normalized time= 0.000055;
+ConstrSize= 11:	numConstr= 71,	Exec time= 0.034276,	Normalized time= 0.000044;
+ConstrSize= 12:	numConstr= 67,	Exec time= 0.027643,	Normalized time= 0.000034;
+ConstrSize= 13:	numConstr= 59,	Exec time= 0.033561,	Normalized time= 0.000044;
+ConstrSize= 14:	numConstr= 41,	Exec time= 0.040282,	Normalized time= 0.000070;
+ConstrSize= 15:	numConstr= 70,	Exec time= 0.041655,	Normalized time= 0.000040;
+ConstrSize= 16:	numConstr= 64,	Exec time= 0.034819,	Normalized time= 0.000034;
+ConstrSize= 17:	numConstr= 59,	Exec time= 0.041439,	Normalized time= 0.000041;
+ConstrSize= 18:	numConstr= 62,	Exec time= 0.048147,	Normalized time= 0.000043;
+ConstrSize= 19:	numConstr= 80,	Exec time= 0.051131,	Normalized time= 0.000034;
+ConstrSize= 20:	numConstr= 70,	Exec time= 0.043719,	Normalized time= 0.000031;
+ConstrSize= 21:	numConstr= 61,	Exec time= 0.048919,	Normalized time= 0.000038;
+ConstrSize= 22:	numConstr= 59,	Exec time= 0.057538,	Normalized time= 0.000044;
+ConstrSize= 23:	numConstr= 67,	Exec time= 0.056936,	Normalized time= 0.000037;
+ConstrSize= 24:	numConstr= 82,	Exec time= 0.051837,	Normalized time= 0.000026;
+ConstrSize= 25:	numConstr= 65,	Exec time= 0.057044,	Normalized time= 0.000035;
+ConstrSize= 26:	numConstr= 69,	Exec time= 0.062156,	Normalized time= 0.000035;
+ConstrSize= 27:	numConstr= 64,	Exec time= 0.062843,	Normalized time= 0.000036;
+ConstrSize= 28:	numConstr= 58,	Exec time= 0.055021,	Normalized time= 0.000034;
+ConstrSize= 29:	numConstr= 62,	Exec time= 0.064088,	Normalized time= 0.000036;
+ConstrSize= 30:	numConstr= 60,	Exec time= 0.071656,	Normalized time= 0.000040;
+ConstrSize= 31:	numConstr= 60,	Exec time= 0.070960,	Normalized time= 0.000038;
+ConstrSize= 32:	numConstr= 70,	Exec time= 0.065293,	Normalized time= 0.000029;
+ConstrSize= 33:	numConstr= 56,	Exec time= 0.069780,	Normalized time= 0.000038;
+ConstrSize= 34:	numConstr= 79,	Exec time= 0.079302,	Normalized time= 0.000030;
+ConstrSize= 35:	numConstr= 65,	Exec time= 0.078064,	Normalized time= 0.000034;
+ConstrSize= 36:	numConstr= 44,	Exec time= 0.070519,	Normalized time= 0.000045;
+ConstrSize= 37:	numConstr= 56,	Exec time= 0.078306,	Normalized time= 0.000038;
+ConstrSize= 38:	numConstr= 59,	Exec time= 0.088521,	Normalized time= 0.000039;
+ConstrSize= 39:	numConstr= 51,	Exec time= 0.086081,	Normalized time= 0.000043;
+ConstrSize= 40:	numConstr= 61,	Exec time= 0.080401,	Normalized time= 0.000033;
+ConstrSize= 41:	numConstr= 61,	Exec time= 0.088249,	Normalized time= 0.000035;
+ConstrSize= 42:	numConstr= 68,	Exec time= 0.091253,	Normalized time= 0.000032;
+ConstrSize= 43:	numConstr= 66,	Exec time= 0.091225,	Normalized time= 0.000032;
+ConstrSize= 44:	numConstr= 65,	Exec time= 0.101094,	Normalized time= 0.000035;
+ConstrSize= 45:	numConstr= 65,	Exec time= 0.092025,	Normalized time= 0.000031;
+ConstrSize= 46:	numConstr= 51,	Exec time= 0.100007,	Normalized time= 0.000043;
+ConstrSize= 47:	numConstr= 74,	Exec time= 0.103318,	Normalized time= 0.000030;
+ConstrSize= 48:	numConstr= 67,	Exec time= 0.092983,	Normalized time= 0.000029;
+ConstrSize= 49:	numConstr= 63,	Exec time= 0.099495,	Normalized time= 0.000032;
+ConstrSize= 50:	numConstr= 71,	Exec time= 0.106090,	Normalized time= 0.000030;
+ConstrSize= 51:	numConstr= 59,	Exec time= 0.107091,	Normalized time= 0.000036;
+ConstrSize= 52:	numConstr= 73,	Exec time= 0.100548,	Normalized time= 0.000026;
+ConstrSize= 53:	numConstr= 67,	Exec time= 0.109830,	Normalized time= 0.000031;
+ConstrSize= 54:	numConstr= 65,	Exec time= 0.114105,	Normalized time= 0.000033;
+ConstrSize= 55:	numConstr= 61,	Exec time= 0.114761,	Normalized time= 0.000034;
+ConstrSize= 56:	numConstr= 80,	Exec time= 0.106599,	Normalized time= 0.000024;
+ConstrSize= 57:	numConstr= 77,	Exec time= 0.116267,	Normalized time= 0.000026;
+ConstrSize= 58:	numConstr= 51,	Exec time= 0.117086,	Normalized time= 0.000040;
+ConstrSize= 59:	numConstr= 60,	Exec time= 0.124000,	Normalized time= 0.000035;
+ConstrSize= 60:	numConstr= 75,	Exec time= 0.117130,	Normalized time= 0.000026;
+ConstrSize= 61:	numConstr= 54,	Exec time= 0.122477,	Normalized time= 0.000037;
+ConstrSize= 62:	numConstr= 59,	Exec time= 0.130021,	Normalized time= 0.000036;
+ConstrSize= 63:	numConstr= 76,	Exec time= 0.127889,	Normalized time= 0.000027;
+ConstrSize= 64:	numConstr= 62,	Exec time= 0.122241,	Normalized time= 0.000031;
+ConstrSize= 65:	numConstr= 54,	Exec time= 0.127615,	Normalized time= 0.000036;
+ConstrSize= 66:	numConstr= 49,	Exec time= 0.133631,	Normalized time= 0.000041;
+ConstrSize= 67:	numConstr= 76,	Exec time= 0.137516,	Normalized time= 0.000027;
+ConstrSize= 68:	numConstr= 68,	Exec time= 0.131392,	Normalized time= 0.000028;
+ConstrSize= 69:	numConstr= 57,	Exec time= 0.138414,	Normalized time= 0.000035;
+ConstrSize= 70:	numConstr= 62,	Exec time= 0.142370,	Normalized time= 0.000033;
+ConstrSize= 71:	numConstr= 69,	Exec time= 0.147378,	Normalized time= 0.000030;
+ConstrSize= 72:	numConstr= 64,	Exec time= 0.135143,	Normalized time= 0.000029;
+ConstrSize= 73:	numConstr= 57,	Exec time= 0.145993,	Normalized time= 0.000035;
+ConstrSize= 74:	numConstr= 59,	Exec time= 0.150056,	Normalized time= 0.000034;
+ConstrSize= 75:	numConstr= 68,	Exec time= 0.151118,	Normalized time= 0.000030;
+ConstrSize= 76:	numConstr= 67,	Exec time= 0.146225,	Normalized time= 0.000029;
+ConstrSize= 77:	numConstr= 74,	Exec time= 0.153635,	Normalized time= 0.000027;
+ConstrSize= 78:	numConstr= 66,	Exec time= 0.158434,	Normalized time= 0.000031;
+ConstrSize= 79:	numConstr= 66,	Exec time= 0.157663,	Normalized time= 0.000030;
+ConstrSize= 80:	numConstr= 79,	Exec time= 0.152371,	Normalized time= 0.000024;
+ConstrSize= 81:	numConstr= 62,	Exec time= 0.164150,	Normalized time= 0.000033;
+ConstrSize= 82:	numConstr= 62,	Exec time= 0.167432,	Normalized time= 0.000033;
+ConstrSize= 83:	numConstr= 63,	Exec time= 0.167161,	Normalized time= 0.000032;
+ConstrSize= 84:	numConstr= 59,	Exec time= 0.156921,	Normalized time= 0.000032;
+ConstrSize= 85:	numConstr= 67,	Exec time= 0.168672,	Normalized time= 0.000030;
+ConstrSize= 86:	numConstr= 64,	Exec time= 0.172925,	Normalized time= 0.000031;
+ConstrSize= 87:	numConstr= 66,	Exec time= 0.172844,	Normalized time= 0.000030;
+ConstrSize= 88:	numConstr= 62,	Exec time= 0.166279,	Normalized time= 0.000030;
+ConstrSize= 89:	numConstr= 68,	Exec time= 0.179509,	Normalized time= 0.000030;
+ConstrSize= 90:	numConstr= 54,	Exec time= 0.176201,	Normalized time= 0.000036;
+ConstrSize= 91:	numConstr= 67,	Exec time= 0.182304,	Normalized time= 0.000030;
+ConstrSize= 92:	numConstr= 60,	Exec time= 0.172483,	Normalized time= 0.000031;
+ConstrSize= 93:	numConstr= 65,	Exec time= 0.177277,	Normalized time= 0.000029;
+ConstrSize= 94:	numConstr= 58,	Exec time= 0.186602,	Normalized time= 0.000034;
+ConstrSize= 95:	numConstr= 67,	Exec time= 0.187651,	Normalized time= 0.000029;
+ConstrSize= 96:	numConstr= 76,	Exec time= 0.188820,	Normalized time= 0.000026;
+ConstrSize= 97:	numConstr= 50,	Exec time= 0.187750,	Normalized time= 0.000039;
+ConstrSize= 98:	numConstr= 63,	Exec time= 0.193006,	Normalized time= 0.000031;
+ConstrSize= 99:	numConstr= 68,	Exec time= 0.202483,	Normalized time= 0.000030;
+ConstrSize= 100:	numConstr= 55,	Exec time= 0.187948,	Normalized time= 0.000034;
+ConstrSize= 101:	numConstr= 56,	Exec time= 0.193173,	Normalized time= 0.000034;
+ConstrSize= 102:	numConstr= 64,	Exec time= 0.199151,	Normalized time= 0.000031;
+ConstrSize= 103:	numConstr= 53,	Exec time= 0.203043,	Normalized time= 0.000037;
+ConstrSize= 104:	numConstr= 62,	Exec time= 0.194760,	Normalized time= 0.000030;
+ConstrSize= 105:	numConstr= 65,	Exec time= 0.198773,	Normalized time= 0.000029;
+ConstrSize= 106:	numConstr= 71,	Exec time= 0.216402,	Normalized time= 0.000029;
+ConstrSize= 107:	numConstr= 74,	Exec time= 0.209658,	Normalized time= 0.000026;
+ConstrSize= 108:	numConstr= 65,	Exec time= 0.204687,	Normalized time= 0.000029;
+ConstrSize= 109:	numConstr= 70,	Exec time= 0.207909,	Normalized time= 0.000027;
+ConstrSize= 110:	numConstr= 62,	Exec time= 0.223759,	Normalized time= 0.000033;
+ConstrSize= 111:	numConstr= 81,	Exec time= 0.221496,	Normalized time= 0.000025;
+ConstrSize= 112:	numConstr= 54,	Exec time= 0.209849,	Normalized time= 0.000035;
+ConstrSize= 113:	numConstr= 51,	Exec time= 0.223027,	Normalized time= 0.000039;
+ConstrSize= 114:	numConstr= 58,	Exec time= 0.222384,	Normalized time= 0.000034;
+ConstrSize= 115:	numConstr= 71,	Exec time= 0.228966,	Normalized time= 0.000028;
+ConstrSize= 116:	numConstr= 59,	Exec time= 0.226694,	Normalized time= 0.000033;
+ConstrSize= 117:	numConstr= 78,	Exec time= 0.233149,	Normalized time= 0.000026;
+ConstrSize= 118:	numConstr= 64,	Exec time= 0.240238,	Normalized time= 0.000032;
+ConstrSize= 119:	numConstr= 56,	Exec time= 0.231271,	Normalized time= 0.000035;
+ConstrSize= 120:	numConstr= 61,	Exec time= 0.223447,	Normalized time= 0.000031;
+ConstrSize= 121:	numConstr= 57,	Exec time= 0.227790,	Normalized time= 0.000033;
+ConstrSize= 122:	numConstr= 72,	Exec time= 0.242569,	Normalized time= 0.000028;
+ConstrSize= 123:	numConstr= 50,	Exec time= 0.238906,	Normalized time= 0.000039;
+ConstrSize= 124:	numConstr= 84,	Exec time= 0.231537,	Normalized time= 0.000022;
+ConstrSize= 125:	numConstr= 75,	Exec time= 0.243116,	Normalized time= 0.000026;
+ConstrSize= 126:	numConstr= 59,	Exec time= 0.254303,	Normalized time= 0.000034;
+ConstrSize= 127:	numConstr= 68,	Exec time= 0.239151,	Normalized time= 0.000028;
+ConstrSize= 128:	numConstr= 63,	Exec time= 0.245030,	Normalized time= 0.000030;
+
+CPU: Elapsed time= 11.724750s. Average execution time= 0.001172s.
+GPU: Total elapsed time= 16.643413s. Average execution time= 0.001664s.
+Same results on CPU and GPU
+
+
+
+
+--------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------
+
+
+
+ARRAYSIZE: 8000 integers
+NUMBER OF CONSTRAINTS: 16000
+NUMBER OF REPETITIONS: 10000
+
+ConstrSize= 0:	numConstr= 0,	Exec time= 0.044351,	Normalized time= inf;
+ConstrSize= 1:	numConstr= 0,	Exec time= 0.000068,	Normalized time= inf;
+ConstrSize= 2:	numConstr= 0,	Exec time= 0.000062,	Normalized time= inf;
+ConstrSize= 3:	numConstr= 0,	Exec time= 0.000061,	Normalized time= inf;
+ConstrSize= 4:	numConstr= 135,	Exec time= 0.013568,	Normalized time= 0.000025;
+ConstrSize= 5:	numConstr= 128,	Exec time= 0.020646,	Normalized time= 0.000032;
+ConstrSize= 6:	numConstr= 108,	Exec time= 0.027250,	Normalized time= 0.000042;
+ConstrSize= 7:	numConstr= 127,	Exec time= 0.028116,	Normalized time= 0.000032;
+ConstrSize= 8:	numConstr= 126,	Exec time= 0.019978,	Normalized time= 0.000020;
+ConstrSize= 9:	numConstr= 136,	Exec time= 0.030617,	Normalized time= 0.000025;
+ConstrSize= 10:	numConstr= 113,	Exec time= 0.034947,	Normalized time= 0.000031;
+ConstrSize= 11:	numConstr= 127,	Exec time= 0.036485,	Normalized time= 0.000026;
+ConstrSize= 12:	numConstr= 124,	Exec time= 0.028050,	Normalized time= 0.000019;
+ConstrSize= 13:	numConstr= 125,	Exec time= 0.034927,	Normalized time= 0.000021;
+ConstrSize= 14:	numConstr= 96,	Exec time= 0.040614,	Normalized time= 0.000030;
+ConstrSize= 15:	numConstr= 129,	Exec time= 0.041511,	Normalized time= 0.000021;
+ConstrSize= 16:	numConstr= 136,	Exec time= 0.037365,	Normalized time= 0.000017;
+ConstrSize= 17:	numConstr= 121,	Exec time= 0.042993,	Normalized time= 0.000021;
+ConstrSize= 18:	numConstr= 115,	Exec time= 0.049951,	Normalized time= 0.000024;
+ConstrSize= 19:	numConstr= 153,	Exec time= 0.055172,	Normalized time= 0.000019;
+ConstrSize= 20:	numConstr= 137,	Exec time= 0.044792,	Normalized time= 0.000016;
+ConstrSize= 21:	numConstr= 133,	Exec time= 0.052311,	Normalized time= 0.000019;
+ConstrSize= 22:	numConstr= 123,	Exec time= 0.059431,	Normalized time= 0.000022;
+ConstrSize= 23:	numConstr= 141,	Exec time= 0.058777,	Normalized time= 0.000018;
+ConstrSize= 24:	numConstr= 159,	Exec time= 0.057137,	Normalized time= 0.000015;
+ConstrSize= 25:	numConstr= 121,	Exec time= 0.057799,	Normalized time= 0.000019;
+ConstrSize= 26:	numConstr= 133,	Exec time= 0.063352,	Normalized time= 0.000018;
+ConstrSize= 27:	numConstr= 131,	Exec time= 0.066379,	Normalized time= 0.000019;
+ConstrSize= 28:	numConstr= 120,	Exec time= 0.058138,	Normalized time= 0.000017;
+ConstrSize= 29:	numConstr= 138,	Exec time= 0.073197,	Normalized time= 0.000018;
+ConstrSize= 30:	numConstr= 122,	Exec time= 0.074636,	Normalized time= 0.000020;
+ConstrSize= 31:	numConstr= 119,	Exec time= 0.073619,	Normalized time= 0.000020;
+ConstrSize= 32:	numConstr= 138,	Exec time= 0.068699,	Normalized time= 0.000016;
+ConstrSize= 33:	numConstr= 116,	Exec time= 0.074469,	Normalized time= 0.000019;
+ConstrSize= 34:	numConstr= 142,	Exec time= 0.081821,	Normalized time= 0.000017;
+ConstrSize= 35:	numConstr= 124,	Exec time= 0.079221,	Normalized time= 0.000018;
+ConstrSize= 36:	numConstr= 116,	Exec time= 0.079634,	Normalized time= 0.000019;
+ConstrSize= 37:	numConstr= 110,	Exec time= 0.082240,	Normalized time= 0.000020;
+ConstrSize= 38:	numConstr= 126,	Exec time= 0.107523,	Normalized time= 0.000022;
+ConstrSize= 39:	numConstr= 128,	Exec time= 0.091103,	Normalized time= 0.000018;
+ConstrSize= 40:	numConstr= 134,	Exec time= 0.095405,	Normalized time= 0.000018;
+ConstrSize= 41:	numConstr= 114,	Exec time= 0.089926,	Normalized time= 0.000019;
+ConstrSize= 42:	numConstr= 148,	Exec time= 0.099504,	Normalized time= 0.000016;
+ConstrSize= 43:	numConstr= 120,	Exec time= 0.094298,	Normalized time= 0.000018;
+ConstrSize= 44:	numConstr= 132,	Exec time= 0.091061,	Normalized time= 0.000016;
+ConstrSize= 45:	numConstr= 130,	Exec time= 0.097875,	Normalized time= 0.000017;
+ConstrSize= 46:	numConstr= 113,	Exec time= 0.100681,	Normalized time= 0.000019;
+ConstrSize= 47:	numConstr= 151,	Exec time= 0.140588,	Normalized time= 0.000020;
+ConstrSize= 48:	numConstr= 142,	Exec time= 0.098816,	Normalized time= 0.000014;
+ConstrSize= 49:	numConstr= 135,	Exec time= 0.105178,	Normalized time= 0.000016;
+ConstrSize= 50:	numConstr= 133,	Exec time= 0.111350,	Normalized time= 0.000017;
+ConstrSize= 51:	numConstr= 120,	Exec time= 0.111451,	Normalized time= 0.000018;
+ConstrSize= 52:	numConstr= 145,	Exec time= 0.113391,	Normalized time= 0.000015;
+ConstrSize= 53:	numConstr= 130,	Exec time= 0.133805,	Normalized time= 0.000019;
+ConstrSize= 54:	numConstr= 122,	Exec time= 0.117490,	Normalized time= 0.000018;
+ConstrSize= 55:	numConstr= 112,	Exec time= 0.121603,	Normalized time= 0.000020;
+ConstrSize= 56:	numConstr= 134,	Exec time= 0.113597,	Normalized time= 0.000015;
+ConstrSize= 57:	numConstr= 151,	Exec time= 0.120592,	Normalized time= 0.000014;
+ConstrSize= 58:	numConstr= 99,	Exec time= 0.126566,	Normalized time= 0.000022;
+ConstrSize= 59:	numConstr= 128,	Exec time= 0.126141,	Normalized time= 0.000017;
+ConstrSize= 60:	numConstr= 130,	Exec time= 0.124418,	Normalized time= 0.000016;
+ConstrSize= 61:	numConstr= 128,	Exec time= 0.150990,	Normalized time= 0.000019;
+ConstrSize= 62:	numConstr= 119,	Exec time= 0.138223,	Normalized time= 0.000019;
+ConstrSize= 63:	numConstr= 134,	Exec time= 0.137278,	Normalized time= 0.000016;
+ConstrSize= 64:	numConstr= 129,	Exec time= 0.129415,	Normalized time= 0.000016;
+ConstrSize= 65:	numConstr= 123,	Exec time= 0.135961,	Normalized time= 0.000017;
+ConstrSize= 66:	numConstr= 119,	Exec time= 0.150688,	Normalized time= 0.000019;
+ConstrSize= 67:	numConstr= 146,	Exec time= 0.144205,	Normalized time= 0.000015;
+ConstrSize= 68:	numConstr= 129,	Exec time= 0.158987,	Normalized time= 0.000018;
+ConstrSize= 69:	numConstr= 131,	Exec time= 0.146486,	Normalized time= 0.000016;
+ConstrSize= 70:	numConstr= 132,	Exec time= 0.149761,	Normalized time= 0.000016;
+ConstrSize= 71:	numConstr= 134,	Exec time= 0.146871,	Normalized time= 0.000015;
+ConstrSize= 72:	numConstr= 124,	Exec time= 0.143639,	Normalized time= 0.000016;
+ConstrSize= 73:	numConstr= 129,	Exec time= 0.156674,	Normalized time= 0.000017;
+ConstrSize= 74:	numConstr= 124,	Exec time= 0.168443,	Normalized time= 0.000018;
+ConstrSize= 75:	numConstr= 141,	Exec time= 0.185008,	Normalized time= 0.000017;
+ConstrSize= 76:	numConstr= 134,	Exec time= 0.160149,	Normalized time= 0.000016;
+ConstrSize= 77:	numConstr= 124,	Exec time= 0.160060,	Normalized time= 0.000017;
+ConstrSize= 78:	numConstr= 114,	Exec time= 0.163420,	Normalized time= 0.000018;
+ConstrSize= 79:	numConstr= 120,	Exec time= 0.168709,	Normalized time= 0.000018;
+ConstrSize= 80:	numConstr= 154,	Exec time= 0.169865,	Normalized time= 0.000014;
+ConstrSize= 81:	numConstr= 133,	Exec time= 0.168485,	Normalized time= 0.000016;
+ConstrSize= 82:	numConstr= 133,	Exec time= 0.171321,	Normalized time= 0.000016;
+ConstrSize= 83:	numConstr= 131,	Exec time= 0.169488,	Normalized time= 0.000016;
+ConstrSize= 84:	numConstr= 124,	Exec time= 0.173573,	Normalized time= 0.000017;
+ConstrSize= 85:	numConstr= 129,	Exec time= 0.172872,	Normalized time= 0.000016;
+ConstrSize= 86:	numConstr= 122,	Exec time= 0.182025,	Normalized time= 0.000017;
+ConstrSize= 87:	numConstr= 132,	Exec time= 0.193700,	Normalized time= 0.000017;
+ConstrSize= 88:	numConstr= 123,	Exec time= 0.194896,	Normalized time= 0.000018;
+ConstrSize= 89:	numConstr= 131,	Exec time= 0.182817,	Normalized time= 0.000016;
+ConstrSize= 90:	numConstr= 115,	Exec time= 0.187109,	Normalized time= 0.000018;
+ConstrSize= 91:	numConstr= 126,	Exec time= 0.196665,	Normalized time= 0.000017;
+ConstrSize= 92:	numConstr= 126,	Exec time= 0.180061,	Normalized time= 0.000016;
+ConstrSize= 93:	numConstr= 122,	Exec time= 0.187002,	Normalized time= 0.000016;
+ConstrSize= 94:	numConstr= 116,	Exec time= 0.196123,	Normalized time= 0.000018;
+ConstrSize= 95:	numConstr= 122,	Exec time= 0.199927,	Normalized time= 0.000017;
+ConstrSize= 96:	numConstr= 131,	Exec time= 0.205156,	Normalized time= 0.000016;
+ConstrSize= 97:	numConstr= 126,	Exec time= 0.211227,	Normalized time= 0.000017;
+ConstrSize= 98:	numConstr= 126,	Exec time= 0.199416,	Normalized time= 0.000016;
+ConstrSize= 99:	numConstr= 118,	Exec time= 0.211814,	Normalized time= 0.000018;
+ConstrSize= 100:	numConstr= 114,	Exec time= 0.192636,	Normalized time= 0.000017;
+ConstrSize= 101:	numConstr= 124,	Exec time= 0.214264,	Normalized time= 0.000017;
+ConstrSize= 102:	numConstr= 130,	Exec time= 0.217780,	Normalized time= 0.000016;
+ConstrSize= 103:	numConstr= 106,	Exec time= 0.205623,	Normalized time= 0.000019;
+ConstrSize= 104:	numConstr= 118,	Exec time= 0.209308,	Normalized time= 0.000017;
+ConstrSize= 105:	numConstr= 126,	Exec time= 0.214728,	Normalized time= 0.000016;
+ConstrSize= 106:	numConstr= 138,	Exec time= 0.235567,	Normalized time= 0.000016;
+ConstrSize= 107:	numConstr= 143,	Exec time= 0.221688,	Normalized time= 0.000014;
+ConstrSize= 108:	numConstr= 129,	Exec time= 0.211221,	Normalized time= 0.000015;
+ConstrSize= 109:	numConstr= 139,	Exec time= 0.230788,	Normalized time= 0.000015;
+ConstrSize= 110:	numConstr= 138,	Exec time= 0.235591,	Normalized time= 0.000016;
+ConstrSize= 111:	numConstr= 142,	Exec time= 0.270248,	Normalized time= 0.000017;
+ConstrSize= 112:	numConstr= 106,	Exec time= 0.214502,	Normalized time= 0.000018;
+ConstrSize= 113:	numConstr= 108,	Exec time= 0.231257,	Normalized time= 0.000019;
+ConstrSize= 114:	numConstr= 124,	Exec time= 0.229754,	Normalized time= 0.000016;
+ConstrSize= 115:	numConstr= 129,	Exec time= 0.271098,	Normalized time= 0.000018;
+ConstrSize= 116:	numConstr= 126,	Exec time= 0.235043,	Normalized time= 0.000016;
+ConstrSize= 117:	numConstr= 145,	Exec time= 0.241837,	Normalized time= 0.000014;
+ConstrSize= 118:	numConstr= 134,	Exec time= 0.261829,	Normalized time= 0.000017;
+ConstrSize= 119:	numConstr= 119,	Exec time= 0.244104,	Normalized time= 0.000017;
+ConstrSize= 120:	numConstr= 121,	Exec time= 0.239950,	Normalized time= 0.000017;
+ConstrSize= 121:	numConstr= 125,	Exec time= 0.240417,	Normalized time= 0.000016;
+ConstrSize= 122:	numConstr= 135,	Exec time= 0.253487,	Normalized time= 0.000015;
+ConstrSize= 123:	numConstr= 123,	Exec time= 0.267816,	Normalized time= 0.000018;
+ConstrSize= 124:	numConstr= 159,	Exec time= 0.254609,	Normalized time= 0.000013;
+ConstrSize= 125:	numConstr= 137,	Exec time= 0.280240,	Normalized time= 0.000016;
+ConstrSize= 126:	numConstr= 110,	Exec time= 0.256962,	Normalized time= 0.000019;
+ConstrSize= 127:	numConstr= 140,	Exec time= 0.270443,	Normalized time= 0.000015;
+ConstrSize= 128:	numConstr= 139,	Exec time= 0.271754,	Normalized time= 0.000015;
+
+CPU: Elapsed time= 23.455969s. Average execution time= 0.002346s.
+GPU: Total elapsed time= 17.897799s. Average execution time= 0.001790s.
+Same results on CPU and GPU
+
+
