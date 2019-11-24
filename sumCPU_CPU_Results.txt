@@ -1,0 +1,55 @@
+arraysize= 1M 
+	CPU_cache: 2.31 ms
+	CPU_NoCache: 2.065 ms
+	GPU_cache: 90.036
+	GPU_noCache: 474.891
+
+---------------------------------
+
+arraysize 2M 
+	CPU_cache: 4.63 ms
+	CPU_NoCache: 5.135 ms
+	GPU_cache: 180.069 ms
+	GPU_noCache: 952.866 ms
+
+---------------------------------
+
+arraysize 4M 
+	CPU_cache: 9.276 ms
+	CPU_NoCache: 13.271 ms
+	GPU_cache: 361.136 ms
+	GPU_noCache: 1913.002 ms
+
+---------------------------------
+
+arraysize 8M 
+	CPU_cache: 18.543 ms
+	CPU_NoCache:28.202 ms
+	GPU_cache: 725.190 ms
+	GPU_noCache: 3810.547 ms
+
+---------------------------------
+
+arraysize 16M 
+	CPU_cache: 37.124 ms
+	CPU_NoCache: 56.634 ms
+	GPU_cache: 1442.709 ms
+	GPU_noCache: 7614.755 ms
+
+---------------------------------
+
+arraysize 32M 
+	CPU_cache: 74.193 ms
+	CPU_NoCache: 113.571 ms
+	GPU_cache: 2897.084 ms
+	GPU_noCache: 15320.771 ms
+
+---------------------------------
+
+arraysize 64M 
+	CPU_cache: 148.279 ms
+	CPU_NoCache: 226.427 ms
+	GPU_cache: 5794.030 ms
+	GPU_noCache: 30566.527 ms
+
+---------------------------------
