@@ -4,8 +4,8 @@ NUMBER OF CONSTRAINTS: 1000
 NUMBER OF REPETITIONS: 500000
 
 
-CPU: Elapsed time= 73.102430s. Average execution time= 0.001462s.
-GPU: Total elapsed time= 32.825380s. Average execution time= 0.000657s.
+CPU: Elapsed time= 73.102430s. Average execution time= 0.0001462s.
+GPU: Total elapsed time= 32.825380s. Average execution time= 0.0000657s.
 Same results on CPU and GPU
 
 
@@ -21,8 +21,8 @@ ARRAYSIZE: 1000 integers
 NUMBER OF CONSTRAINTS: 4000
 NUMBER OF REPETITIONS: 500000
 
-CPU: Elapsed time= 290.808130s. Average execution time= 0.005816s.
-GPU: Total elapsed time= 73.716560s. Average execution time= 0.001474s.
+CPU: Elapsed time= 290.808130s. Average execution time= 0.0005816s.
+GPU: Total elapsed time= 73.716560s. Average execution time= 0.0001474s.
 Same results on CPU and GPU
 
 
@@ -37,8 +37,8 @@ ARRAYSIZE: 4000 integers
 NUMBER OF CONSTRAINTS: 8000
 NUMBER OF REPETITIONS: 500000
 
-CPU: Elapsed time= 585.945570s. Average execution time= 0.011719s.
-GPU: Total elapsed time= 144.107720s. Average execution time= 0.002882s.
+CPU: Elapsed time= 585.945570s. Average execution time= 0.0011719s.
+GPU: Total elapsed time= 144.107720s. Average execution time= 0.0002882s.
 Same results on CPU and GPU
 
 
@@ -53,7 +53,7 @@ ARRAYSIZE: 8000 integers
 NUMBER OF CONSTRAINTS: 16000
 NUMBER OF REPETITIONS: 500000
 
-CPU: Elapsed time= 1171.709100s. Average execution time= 0.023434s.
-GPU: Total elapsed time= 307.440550s. Average execution time= 0.006149s.
+CPU: Elapsed time= 1171.709100s. Average execution time= 0.0023434s.
+GPU: Total elapsed time= 307.440550s. Average execution time= 0.0006149s.
 Same results on CPU and GPU
 
