@@ -88,7 +88,7 @@ __global__ void constraintSumGPU_fixedLengthArrays(int *dataArr, int arraySize, 
 				tempSum += dataArr[constraints[currentConstraint][i]];
 			}
 		}
-		sumValues[index] = tempSum;
+		sumValues[currentConstraint] = tempSum;
 	}
 	else {
 		// invalid constraint index
