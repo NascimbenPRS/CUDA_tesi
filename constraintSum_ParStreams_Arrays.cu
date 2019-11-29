@@ -76,19 +76,20 @@ __global__ void constraintSumGPU_fixedLength(int *dataArr, int arraySize, int *s
 // Propagate only constraints of size == constLength
 // constraintsFixedSize= array containing indexes of constraints of size constLength; sizeAmount= its cardinality
 // 
-__global__ void constraintSumGPU_fixedLengthArrays(int *dataArr, int arraySize, int *sumValues, int numCycles, int **constraints, int *constraintsFixedSize, int sizeAmount, int constLength) {
+__global__ void constraintSumGPU_fixedLengthArrays(int *dataArr, int arraySize, int *sumValues, int numCycles, int **constraints, int **constraintsOfSize, int *sizesAmount, int constLength) {
 	int index = threadIdx.x + (blockIdx.x * blockDim.x);
-	if (index < sizeAmount) {
-		// constraintsFixedLength[constLength][index] is a valid constraint (sizeAmount= number of constraints of size constLength
+	if (index < sizesAmount[constLength]) {
+		// valid index
 		int tempSum = 0;
-		int currentConstraint = constraintsFixedSize[index]; // index of the constraint propagated by this thread
+		int currentConstraintIndex = constraintsOfSize[constLength][index];
+		int* currentConstraint = constraints[currentConstraintIndex]; //constraint propagated by this thread
 		for (int k = 0; k < numCycles; k++) {
 			tempSum = 0;
 			for (int i = 0; i < constLength; i++) {
-				tempSum += dataArr[constraints[currentConstraint][i]];
+				tempSum += dataArr[currentConstraint[i]];
 			}
 		}
-		sumValues[currentConstraint] = tempSum;
+		sumValues[currentConstraintIndex] = tempSum;
 	}
 	else {
 		// invalid constraint index
@@ -251,8 +252,6 @@ int main(int argc, char *argv[])
 	}
 	*/
 
-
-
 	// allocate and initialize CPU and GPU results arrays
 	genericMalloc((void**)&resultsCPU, numConstraints * sizeof(int));
 	genericMalloc((void**)&resultsGPU, numConstraints * sizeof(int));
@@ -288,6 +287,7 @@ int main(int argc, char *argv[])
 		tempCounter[i] = 0;
 	}
 	for (int i = 0; i < numConstraints; i++) {
+		// save each constraint index i in the proper constraintOfSize array
 		constraintsOfSize[constraintSizes[i]][tempCounter[constraintSizes[i]]] = i;
 		tempCounter[constraintSizes[i]]++;
 	}
@@ -306,6 +306,19 @@ int main(int argc, char *argv[])
 
 
 	// Measure GPU execution time
+
+		// Create a stream for each constraint size (for each kernel)
+	const int numStreams = maxConstraintSize + 1; // a stream for each size in [0, maxConstraintSize]
+	cudaStream_t streams[129];
+	for (int i = 0; i < numStreams; i++) {
+		cudaStreamCreate(&streams[i]);
+	}
+		// Get the optimal configuration for each kernel
+	int numBlocksArray[129];
+	int blockSizeArray[129];
+	for (int i = 0; i < maxConstraintSize + 1; i++) {
+		getOptimalGridConfig(sizesAmount[i], numOfMultiProcessors, maxBlockSize, &numBlocksArray[i], &blockSizeArray[i]);
+	}
 	//		Prefetch data, constraints and resultsGPU arrays to GPU
 	cudaMemPrefetchAsync(dataArray, arraySize * sizeof(int), device);
 	cudaMemPrefetchAsync(constraints, numConstraints * sizeof(int*), device, NULL);
@@ -314,35 +327,28 @@ int main(int argc, char *argv[])
 	}
 	cudaMemPrefetchAsync(constraintSizes, numConstraints * sizeof(int), device, NULL);
 	cudaMemPrefetchAsync(resultsGPU, numConstraints * sizeof(int), device, NULL);
+				// Parallel arrays 
+	for (int i = 0; i <= maxConstraintSize; i++) {
+		cudaMemPrefetchAsync(constraintsOfSize[i], sizesAmount[i] * sizeof(int), device, NULL);
+	}
+	cudaMemPrefetchAsync(constraintsOfSize, (maxConstraintSize+1) * sizeof(int*), device, NULL);
+	cudaMemPrefetchAsync(sizesAmount, (maxConstraintSize + 1) * sizeof(int), device, NULL);
 	cudaDeviceSynchronize();
-
-	// Create a stream for each constraint size (for each kernel)
-	const int numStreams = maxConstraintSize + 1; // a stream for each size in [0, maxConstraintSize]
-	cudaStream_t streams[129];
-	for (int i = 0; i < numStreams; i++) {
-		cudaStreamCreate(&streams[i]);
-	}
-
-	int numBlocksArray[129];
-	int blockSizeArray[129];
-	for (int i = 0; i < maxConstraintSize + 1; i++) {
-		getOptimalGridConfig(sizesAmount[i], numOfMultiProcessors, maxBlockSize, &numBlocksArray[i], &blockSizeArray[i]);
-	}
+		// End of prefetching
+	
 
 	numCyclesGPU = numCyclesCPU;
-	//		Propagate constraints of each size in [4, maxConstraintSize] (launching maxConstraintSize+1 concurrent kernels)
+	//		Propagate constraints of each size in [4, maxConstraintSize] (launching maxConstraintSize -4 +1 concurrent kernels)
 	startClock = clock();
 	// launch all kernels
 	for (int constLength = 4; constLength <= maxConstraintSize; constLength++) {
-		constraintSumGPU_fixedLengthArrays << <numBlocksArray[constLength], blockSizeArray[constLength], 0, streams[constLength] >> > (dataArray, arraySize, resultsGPU, numCyclesGPU, constraints, constraintsOfSize[constLength], sizesAmount[constLength],constLength);
+		constraintSumGPU_fixedLengthArrays << <numBlocksArray[constLength], blockSizeArray[constLength], 0, streams[constLength] >> > (dataArray, arraySize, resultsGPU, numCyclesGPU, constraints, constraintsOfSize, sizesAmount,constLength);
 	}
 	cudaDeviceSynchronize();
 	endClock = clock();
 
 	elapsedClocks = endClock - startClock;
 	tempTime = ((double)(elapsedClocks)) / (CLOCKS_PER_SEC);
-	//normalizedTime = tempTime / (constLength * sizesAmount[constLength]);
-	//printf("ConstrSize= %d:\tnumConstr= %d,\tExec time= %f,\tNormalized time= %f;\n", constLength, sizesAmount[constLength], tempTime, normalizedTime);
 	elapsedTimeGPU += tempTime;
 
 	avgElapsedTimeGPU = elapsedTimeGPU / numCyclesGPU;
